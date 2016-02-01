@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Newton Inventory Service API &mdash; Newton Inventory Service 0.9.0 documentation</title>
+
+    <style type="text/css">
+cite,code,tt{font-family:'Source Code Pro', monospace;font-size:.9em;letter-spacing:.01em;background-color:#eeeff2;font-style:normal;}h1,h2,h3,h4,h5,h6{font-family:"Open Sans", sans-serif;font-weight:300;}.viewcode-link,span.eqno{float:right;}.highlight .nc,.highlight .nn{color:#93A1A1;font-weight:700;}@font-face{font-family:'Source Code Pro';font-style:normal;font-weight:400;src:local("Source Code Pro"),local(SourceCodePro-Regular),url(http://themes.googleusercontent.com/static/fonts/sourcecodepro/v4/mrl8jkM18OlOQN8JLgasDxM0YzuT7MdOe03otPbuUS0.woff) format(woff);}dd ul,dd table{margin-bottom:10px;}.highlight{-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;background:#002b36!important;color:#93a1a1;}div.document{background-color:#fcfcfc;text-align:left;background-repeat:repeat-x;}div.body h1 a,div.body h2 a,div.body h3 a,div.body h4 a,div.body h5 a,div.body h6 a{color:#657b83!important;}div.footer{background-color:#93a1a1;color:#eee;clear:both;font-size:.8em;text-align:right;padding:3px 8px 3px 0;}.highlight .k,.highlight .kc,.highlight .kd,.highlight .kn,.highlight .kr,.highlight .ow{color:#268BD2;font-weight:700;}h3,h4,h5,h6{color:#073642;border-bottom:1px dotted #eee;}div.sphinxsidebar ul ul,div.sphinxsidebar ul.want-points{margin-left:20px;list-style:square;}table{border-collapse:collapse;margin:0 -.5em;}div.body a:hover,div.sphinxsidebarwrapper a:hover{border-bottom:1px solid #268bd2;}.field-list ul{padding-left:1em;margin:0;}h1{line-height:1.2em;color:#002b36;text-shadow:#eee .1em .1em .1em;margin:0;padding:.7em 0 .3em;}h1:hover>a.headerlink,h2:hover>a.headerlink,h3:hover>a.headerlink,h4:hover>a.headerlink,h5:hover>a.headerlink,h6:hover>a.headerlink,dt:hover>a.headerlink{visibility:visible;}div.related li,h1:hover a.anchor,h2:hover a.anchor,h3:hover a.anchor,h4:hover a.anchor,h5:hover a.anchor,h6:hover a.anchor{display:inline;}div.sphinxsidebar ul ul{margin-top:0;margin-bottom:0;margin-left:20px;}div.related ul li a:hover{background-color:#073642;-webkit-border-radius:2px;-moz-border-radius:2px;border-radius:2px;}tt.descname{background-color:transparent;font-weight:700;font-size:1.2em;}div.body td,.align-left{text-align:left;}div.sphinxsidebar ul{list-style:none;margin-top:7px;line-height:150%;color:#586e75;padding:0;}.highlight .o{color:#859900;}.highlight .c,.highlight .cm,.highlight .c1{color:#408090;font-style:italic;}div.sphinxsidebar h3 a{color:#2E3436;}div.body a,div.sphinxsidebarwrapper a{color:#268bd2;text-decoration:none;}div.clearer{clear:both;}.highlight .g,.highlight .l,.highlight .n,.highlight .p,.highlight .ld,.highlight .nx,.highlight .py{color:#93a1a1;}div.sphinxsidebarwrapper{padding:0;}ul.search li a,ul.keywordmatches li.goodmatch a,p.sidebar-title,div.admonition dt{font-weight:700;}body{font-family:'Open Sans', sans-serif;font-size:14px;line-height:150%;text-align:center;color:#002b36;min-width:740px;-moz-box-shadow:0 0 10px #93a1a1;-webkit-box-shadow:0 0 10px #93a1a1;box-shadow:0 0 10px #93a1a1;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAPCAIAAAHt9hMZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6N0RBOEYzNTNEQkE5MTFFMTgwMkJFNjk4ODI1NkM0ODEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6N0RBOEYzNTREQkE5MTFFMTgwMkJFNjk4ODI1NkM0ODEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3REE4RjM1MURCQTkxMUUxODAyQkU2OTg4MjU2QzQ4MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3REE4RjM1MkRCQTkxMUUxODAyQkU2OTg4MjU2QzQ4MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph88gYkAAAB1SURBVHjaYnjz5s1/MAAyGIEUAwwABBADRAxIIoQBAghVAQwwvX37FsJCZgAEEEI/MgOHCQzYABO6iWAAEEDYTcBuAHaHYWOQYioD0QAggLCHAbGhQr7VTMR4mQRfD5S9AAFGQqxQP0lQ2S8kuJGB2mBk+hoAwlXWrXM6SBoAAAAASUVORK5CYII=) repeat;margin:0 80px;padding:0;}pre::-webkit-scrollbar-thumb{border-radius:1em;background:#93a1a1;}.highlight .nf{color:#268BD2;}div.bodywrapper{border-right:1px dotted #eee8d5;margin:0 240px 0 0;}pre{overflow:auto;overflow-y:hidden;font-family:'Source Code Pro', monospace;font-style:normal;font-size:.9em;letter-spacing:.015em;line-height:120%;white-space:0;word-wrap:break-word;padding:.7em;}div.body{background-color:#FFF;margin:0;padding:.5em 20px 20px;}div.related li.right,div.related ul li.right{float:right;margin-right:5px;}div.footer a{color:#eee;text-decoration:none;}a.headerlink{visibility:hidden;color:#c60f0f!important;font-size:1em;margin-left:6px;text-decoration:none!important;padding:0 4px;}.align-center,div.body div.math p{text-align:center;}.highlight .m,.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo,.highlight .il{color:#2AA198;}.highlight .nv,.highlight .vc,.highlight .vg,.highlight .vi{color:#bb60d5;}a.headerlink:hover{background-color:#ccc;color:#fff!important;}.highlight .nt{color:#268BD2;font-weight:700;}div.related{width:100%;font-size:1em;background:#002b36;color:#839496;padding:5px 0;}div.related ul{list-style:none;height:2em;margin:2px;padding:0 0 0 10px;}table td,table th{padding:.2em .5em;}th{text-align:left;padding-right:5px;}div.sphinxsidebar h3,div.sphinxsidebar h4{font-size:1em;background-color:#eeeff1;margin:1em 0 .5em;padding:.7em;}div.related ul li{height:2em;float:left;margin:0;padding:0;}h2{color:#073642;border-bottom:1px solid #eee;margin:1.3em 0 .2em;padding:0 0 10px;}h3{padding-bottom:5px;margin:1em 0 -.3em;}p{margin:.8em 0 .5em;}table.docutils{border:0;border-collapse:collapse;}table.docutils td,table.docutils th{border-top:0;border-left:0;border-right:0;border-bottom:1px solid #aaa;padding:1px 8px 1px 5px;}tt.descclassname,h1 tt,h2 tt,h3 tt,h4 tt,h5 tt,h6 tt{background-color:transparent;}.highlight .cp,.highlight .kp,.highlight .nb,.highlight .ne,.highlight .bp{color:#CB4B16;}a.biglink,.optional{font-size:1.3em;}div.sphinxsidebar{width:210px;float:right;font-size:.9em;text-align:left;margin:0;padding:.5em 15px 15px 0;}table.field-list td,table.field-list th,table.footnote td,table.footnote th{border:0!important;}div.related ul li a{line-height:2em;text-decoration:none;color:#839496;margin:0;padding:2px 5px;}div.related h3{display:none;}dd p{margin-top:0;}dt:target,.highlighted{background-color:#fbe54e;}pre::-webkit-scrollbar,.highlight::-webkit-scrollbar{height:.5em;background:#073642;}div.modindex-jumpbox,div.genindex-jumpbox{border-top:1px solid #ddd;border-bottom:1px solid #ddd;margin:1em 0;padding:.4em;}.highlight .s,.highlight .na,.highlight .sb,.highlight .sc,.highlight .s2,.highlight .sh,.highlight .s1{color:#2AA198;}.first{margin-top:0!important;}dd{margin-top:3px;margin-bottom:10px;margin-left:30px;}dl{margin-bottom:15px;}
+    </style>
+
+    
+    <script type="text/javascript">
+(function(u,n){function x(a){return b.event.u.Ad?a:a.replace(yb,"mouseenter$1 mouseleave$1")}function C(){t.addEventListener?(t.removeEventListener("DOMContentLoaded",C,!1),b.p()):"complete"===t.readyState&&(t.detachEvent("onreadystatechange",C),b.p())}function G(a,b){return(b+"").toUpperCase()}function b(a,c){return new b.c.B(a,c,Sa)}function P(a){var c=Ta[a]={};return b.a(a.split(S),function(a,b){c[b]=!0}),c}function ba(a,c,d){if(d===n&&1===a.nodeType)if(d="data-"+c.replace(zb,"-$1").toLowerCase(),
+d=a.getAttribute(d),"string"==typeof d){try{d="true"===d?!0:"false"===d?!1:"null"===d?null:+d+""===d?+d:Ab.test(d)?b.wc(d):d}catch(g){}b.data(a,c,d)}else d=n;return d}function ja(a){for(var c in a)if(("data"!==c||!b.Ka(a[c]))&&"toJSON"!==c)return!1;return!0}function L(){return!1}function z(){return!0}function E(a){return!a||!a.parentNode||11===a.parentNode.nodeType}function A(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}function ta(a,c,d){c=c||0;if(b.b(c))return b.W(a,function(a,b){return!!c.call(a,
+b,a)===d});if(c.nodeType)return b.W(a,function(a){return a===c===d});if("string"==typeof c){var g=b.W(a,function(a){return 1===a.nodeType});if(Bb.test(c))return b.filter(c,g,!d);c=b.filter(c,g)}return b.W(a,function(a){return 0<=b.N(a,c)===d})}function F(a){var b=Ua.split("|");a=a.createDocumentFragment();if(a.createElement)for(;b.length;)a.createElement(b.pop());return a}function Da(a){return a.getElementsByTagName("tbody")[0]||a.appendChild(a.ownerDocument.createElement("tbody"))}function ka(a,
+c){if(1===c.nodeType&&b.dc(a)){var d,g,h;g=b.e(a);var s=b.e(c,g),l=g.L;if(l)for(d in delete s.handle,s.L={},l)for(g=0,h=l[d].length;g<h;g++)b.event.add(c,d,l[d][g]);s.data&&(s.data=b.extend({},s.data))}}function la(a,c){var d;1===c.nodeType&&(c.kd&&c.kd(),c.mergeAttributes&&c.mergeAttributes(a),d=c.nodeName.toLowerCase(),"object"===d?(c.parentNode&&(c.outerHTML=a.outerHTML),b.d.vb&&a.innerHTML&&!b.trim(c.innerHTML)&&(c.innerHTML=a.innerHTML)):"input"===d&&Va.test(a.type)?(c.defaultChecked=c.checked=
+a.checked,c.value!==a.value&&(c.value=a.value)):"option"===d?c.selected=a.defaultSelected:"input"===d||"textarea"===d?c.defaultValue=a.defaultValue:"script"===d&&c.text!==a.text&&(c.text=a.text),c.removeAttribute(b.expando))}function Q(a){return"undefined"!=typeof a.getElementsByTagName?a.getElementsByTagName("*"):"undefined"!=typeof a.querySelectorAll?a.querySelectorAll("*"):[]}function ma(a){Va.test(a.type)&&(a.defaultChecked=a.checked)}function na(a,b){if(b in a)return b;for(var d=b.charAt(0).toUpperCase()+
+b.slice(1),g=b,h=Wa.length;h--;)if(b=Wa[h]+d,b in a)return b;return g}function W(a,c){return a=c||a,"none"===b.g(a,"display")||!b.contains(a.ownerDocument,a)}function oa(a,c){for(var d,g,h=[],s=0,l=a.length;s<l;s++)d=a[s],d.style&&(h[s]=b.e(d,"olddisplay"),c?(!h[s]&&"none"===d.style.display&&(d.style.display=""),""===d.style.display&&W(d)&&(h[s]=b.e(d,"olddisplay",T(d.nodeName)))):(g=B(d,"display"),!h[s]&&"none"!==g&&b.e(d,"olddisplay",g)));for(s=0;s<l;s++)d=a[s],!d.style||c&&"none"!==d.style.display&&
+""!==d.style.display||(d.style.display=c?h[s]||"":"none");return a}function X(a,b,d){return(a=Cb.exec(b))?Math.max(0,a[1]-(d||0))+(a[2]||"px"):b}function pa(a,c,d,g){c=d===(g?"border":"content")?4:"width"===c?1:0;for(var h=0;4>c;c+=2)"margin"===d&&(h+=b.g(a,d+Y[c],!0)),g?("content"===d&&(h-=parseFloat(B(a,"padding"+Y[c]))||0),"margin"!==d&&(h-=parseFloat(B(a,"border"+Y[c]+"Width"))||0)):(h+=parseFloat(B(a,"padding"+Y[c]))||0,"padding"!==d&&(h+=parseFloat(B(a,"border"+Y[c]+"Width"))||0));return h}
+function ua(a,c,d){var g="width"===c?a.offsetWidth:a.offsetHeight,h=!0,s=b.d.boxSizing&&"border-box"===b.g(a,"boxSizing");if(0>=g||null==g){g=B(a,c);if(0>g||null==g)g=a.style[c];if(va.test(g))return g;h=s&&(b.d.Qb||g===a.style[c]);g=parseFloat(g)||0}return g+pa(a,c,d||(s?"border":"content"),h)+"px"}function T(a){if(Ea[a])return Ea[a];var c=b("<"+a+">").ad(t.body),d=c.g("display");c.remove();if("none"===d||""===d)ca=t.body.appendChild(ca||b.extend(t.createElement("iframe"),{frameBorder:0,width:0,height:0})),
+da&&ca.createElement||(da=(ca.contentWindow||ca.contentDocument).document,da.write("<!doctype html><html><body>"),da.close()),c=da.body.appendChild(da.createElement(a)),d=B(c,"display"),t.body.removeChild(ca);return Ea[a]=d,d}function y(a,c,d,g){var h;if(b.isArray(c))b.a(c,function(b,c){d||Db.test(a)?g(a,c):y(a+"["+("object"==typeof c?b:"")+"]",c,d,g)});else if(d||"object"!==b.type(c))g(a,c);else for(h in c)y(a+"["+h+"]",c[h],d,g)}function qa(a){return function(c,d){"string"!=typeof c&&(d=c,c="*");
+var g,h,s=c.toLowerCase().split(S),l=0,e=s.length;if(b.b(d))for(;l<e;l++)g=s[l],(h=/^\+/.test(g))&&(g=g.substr(1)||"*"),g=a[g]=a[g]||[],g[h?"unshift":"push"](d)}}function Z(a,b,d,g,h,s){h=h||b.w[0];s=s||{};s[h]=!0;var l;h=a[h];for(var e=0,f=h?h.length:0,k=a===Fa;e<f&&(k||!l);e++)l=h[e](b,d,g),"string"==typeof l&&(!k||s[l]?l=n:(b.w.unshift(l),l=Z(a,b,d,g,l,s)));return(k||!l)&&!s["*"]&&(l=Z(a,b,d,g,"*",s)),l}function ea(a,c){var d,g,h=b.R.vd||{};for(d in c)c[d]!==n&&((h[d]?a:g||(g={}))[d]=c[d]);g&&
+b.extend(!0,a,g)}function e(){try{return new u.XMLHttpRequest}catch(a){}}function f(){return setTimeout(function(){fa=n},0),fa=b.now()}function k(a,c){b.a(c,function(b,c){for(var h=(ra[b]||[]).concat(ra["*"]),s=0,l=h.length;s<l&&!h[s].call(a,b,c);s++);})}function m(a,c,d){function g(){for(var b=fa||f(),b=Math.max(0,e.startTime+e.duration-b),c=1-(b/e.duration||0),d=0,g=e.Ea.length;d<g;d++)e.Ea[d].Dc(c);return l.Td(a,[e,c,b]),1>c&&g?b:(l.ja(a,[e]),!1)}var h=0,s=wa.length,l=b.Z().S(function(){delete g.f}),
+e=l.m({f:a,O:b.extend({},c),o:b.extend(!0,{Hc:{}},d),lg:c,kg:d,startTime:fa||f(),duration:d.duration,Ea:[],Ub:function(c,d){var g=b.Uc(a,e.o,c,d,e.o.Hc[c]||e.o.ua);return e.Ea.push(g),g},stop:function(b){for(var c=0,d=b?e.Ea.length:0;c<d;c++)e.Ea[c].Dc(1);return b?l.ja(a,[e,b]):l.fe(a,[e,b]),this}});d=e.O;for(r(d,e.o.Hc);h<s;h++)if(c=wa[h].call(e,a,d,e.o))return c;return k(e,d),b.b(e.o.start)&&e.o.start.call(a,e),b.k.ve(b.extend(g,{Zc:e,j:e.o.j,f:a})),e.Db(e.o.Db).A(e.o.A,e.o.complete).wa(e.o.wa).S(e.o.S)}
+function r(a,c){var d,g,h,s,l;for(d in a)if(g=b.U(d),h=c[g],s=a[d],b.isArray(s)&&(h=s[1],s=a[d]=s[0]),d!==g&&(a[g]=s,delete a[d]),(l=b.q[g])&&"expand"in l)for(d in s=l.expand(s),delete a[g],s)d in a||(a[d]=s[d],c[d]=h);else c[g]=h}function q(a,b,d,g,h){return new q.prototype.B(a,b,d,g,h)}function N(a,b){var d,g={height:a},h=0;for(b=b?1:0;4>h;h+=2-b)d=Y[h],g["margin"+d]=g["padding"+d]=a;return b&&(g.opacity=g.width=a),g}function xa(a){return b.X(a)?a:9===a.nodeType?a.defaultView||a.parentWindow:!1}
+var Sa,ya,t=u.document,Eb=u.location,Fb=u.navigator,Gb=u.Oa,Hb=u.Xa,Xa=Array.prototype.push,R=Array.prototype.slice,Ya=Array.prototype.indexOf,Ib=Object.prototype.toString,Ha=Object.prototype.hasOwnProperty,Ia=String.prototype.trim,za=/[\-+]?(?:\d*\.|)\d+(?:[eE][\-+]?\d+|)/.source,Jb=/\S/,S=/\s+/,Kb=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,Lb=/^(?:[^#<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,Za=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,Mb=/^[\],:{}\s]*$/,Nb=/(?:^|:|,)(?:\s*\[)+/g,Ob=/\\(?:["\\\/bfnrt]|u[\da-fA-F]{4})/g,
+Pb=/"[^"\\\r\n]*"|true|false|null|-?(?:\d\d*\.|)\d+(?:[eE][\-+]?\d+|)/g,Qb=/^-ms-/,Rb=/-([\da-z])/gi,$a={};b.c=b.prototype={constructor:b,B:function(a,c,d){var g,h;if(!a)return this;if(a.nodeType)return this.v=this[0]=a,this.length=1,this;if("string"==typeof a){"<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&3<=a.length?g=[null,a,null]:g=Lb.exec(a);if(g&&(g[1]||!c)){if(g[1])return c=c instanceof b?c[0]:c,h=c&&c.nodeType?c.ownerDocument||c:t,a=b.Xd(g[1],h,!0),Za.test(g[1])&&b.La(c)&&this.J.call(a,c,
+!0),b.C(this,a);if((c=t.getElementById(g[2]))&&c.parentNode){if(c.id!==g[2])return d.find(a);this.length=1;this[0]=c}return this.v=t,this.i=a,this}return!c||c.Pa?(c||d).find(a):this.constructor(c).find(a)}return b.b(a)?d.p(a):(a.i!==n&&(this.i=a.i,this.v=a.v),b.fa(a,this))},i:"",Pa:"1.8.3",length:0,size:function(){return this.length},ka:function(){return R.call(this)},get:function(a){return null==a?this.ka():0>a?this[this.length+a]:this[a]},t:function(a,c,d){a=b.C(this.constructor(),a);return a.Cb=
+this,a.v=this.v,"find"===c?a.i=this.i+(this.i?" ":"")+d:c&&(a.i=this.i+"."+c+"("+d+")"),a},a:function(a,c){return b.a(this,a,c)},p:function(a){return b.p.m().A(a),this},va:function(a){return a=+a,-1===a?this.slice(a):this.slice(a,a+1)},ya:function(){return this.va(0)},zb:function(){return this.va(-1)},slice:function(){return this.t(R.apply(this,arguments),"slice",R.call(arguments).join(","))},map:function(a){return this.t(b.map(this,function(b,d){return a.call(b,d,b)}))},end:function(){return this.Cb||
+this.constructor(null)},push:Xa,sort:[].sort,splice:[].splice};b.c.B.prototype=b.c;b.extend=b.c.extend=function(){var a,c,d,g,h,s,l=arguments[0]||{},e=1,f=arguments.length,k=!1;"boolean"==typeof l&&(k=l,l=arguments[1]||{},e=2);"object"!=typeof l&&!b.b(l)&&(l={});for(f===e&&(l=this,--e);e<f;e++)if(null!=(a=arguments[e]))for(c in a)d=l[c],g=a[c],l!==g&&(k&&g&&(b.La(g)||(h=b.isArray(g)))?(h?(h=!1,s=d&&b.isArray(d)?d:[]):s=d&&b.La(d)?d:{},l[c]=b.extend(k,s,g)):g!==n&&(l[c]=g));return l};b.extend({rc:function(a){return u.Xa===
+b&&(u.Xa=Hb),a&&u.Oa===b&&(u.Oa=Gb),b},yb:!1,Eb:1,Ef:function(a){a?b.Eb++:b.p(!0)},p:function(a){if(!0===a?!--b.Eb:!b.yb){if(!t.body)return setTimeout(b.p,1);b.yb=!0;!0!==a&&0<--b.Eb||(ya.ja(t,[b]),b.c.n&&b(t).n("ready").I("ready"))}},b:function(a){return"function"===b.type(a)},isArray:Array.isArray||function(a){return"array"===b.type(a)},X:function(a){return null!=a&&a==a.window},lc:function(a){return!isNaN(parseFloat(a))&&isFinite(a)},type:function(a){return null==a?String(a):$a[Ib.call(a)]||"object"},
+La:function(a){if(!a||"object"!==b.type(a)||a.nodeType||b.X(a))return!1;try{if(a.constructor&&!Ha.call(a,"constructor")&&!Ha.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}for(var d in a);return d===n||Ha.call(a,d)},Ka:function(a){for(var b in a)return!1;return!0},error:function(a){throw Error(a);},Xd:function(a,c,d){var g;return a&&"string"==typeof a?("boolean"==typeof c&&(d=c,c=0),c=c||t,(g=Za.exec(a))?[c.createElement(g[1])]:(g=b.Rb([a],c,d?null:[]),b.C([],(g.Sb?b.V(g.tb):
+g.tb).childNodes))):null},wc:function(a){if(!a||"string"!=typeof a)return null;a=b.trim(a);if(u.JSON&&u.JSON.parse)return u.JSON.parse(a);if(Mb.test(a.replace(Ob,"@").replace(Pb,"]").replace(Nb,"")))return(new Function("return "+a))();b.error("Invalid JSON: "+a)},Yd:function(a){var c,d;if(!a||"string"!=typeof a)return null;try{u.DOMParser?(d=new DOMParser,c=d.parseFromString(a,"text/xml")):(c=new ActiveXObject("Microsoft.XMLDOM"),c.async="false",c.loadXML(a))}catch(g){c=n}return(!c||!c.documentElement||
+c.getElementsByTagName("parsererror").length)&&b.error("Invalid XML: "+a),c},sc:function(){},bc:function(a){a&&Jb.test(a)&&(u.execScript||function(a){u.eval.call(u,a)})(a)},U:function(a){return a.replace(Qb,"ms-").replace(Rb,G)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},a:function(a,c,d){var g,h=0,s=a.length,l=s===n||b.b(a);if(d)if(l)for(g in a){if(!1===c.apply(a[g],d))break}else for(;h<s&&!1!==c.apply(a[h++],d););else if(l)for(g in a){if(!1===c.call(a[g],
+g,a[g]))break}else for(;h<s&&!1!==c.call(a[h],h,a[h++]););return a},trim:Ia&&!Ia.call("\ufeff\u00a0")?function(a){return null==a?"":Ia.call(a)}:function(a){return null==a?"":(a+"").replace(Kb,"")},fa:function(a,c){var d,g=c||[];return null!=a&&(d=b.type(a),null==a.length||"string"===d||"function"===d||"regexp"===d||b.X(a)?Xa.call(g,a):b.C(g,a)),g},N:function(a,b,d){var g;if(b){if(Ya)return Ya.call(b,a,d);g=b.length;for(d=d?0>d?Math.max(0,g+d):d:0;d<g;d++)if(d in b&&b[d]===a)return d}return-1},C:function(a,
+b){var d=b.length,g=a.length,h=0;if("number"==typeof d)for(;h<d;h++)a[g++]=b[h];else for(;b[h]!==n;)a[g++]=b[h++];return a.length=g,a},W:function(a,b,d){var g,h=[],s=0,l=a.length;for(d=!!d;s<l;s++)g=!!b(a[s],s),d!==g&&h.push(a[s]);return h},map:function(a,c,d){var g,h,s=[],l=0,e=a.length;if(a instanceof b||e!==n&&"number"==typeof e&&(0<e&&a[0]&&a[e-1]||0===e||b.isArray(a)))for(;l<e;l++)g=c(a[l],l,d),null!=g&&(s[s.length]=g);else for(h in a)g=c(a[h],h,d),null!=g&&(s[s.length]=g);return s.concat.apply([],
+s)},h:1,tg:function(a,c){var d,g,h;return"string"==typeof c&&(d=a[c],c=a,a=d),b.b(a)?(g=R.call(arguments,2),h=function(){return a.apply(c,g.concat(R.call(arguments)))},h.h=a.h=a.h||b.h++,h):n},G:function(a,c,d,g,h,s,l){var e,f=null==d,k=0,m=a.length;if(d&&"object"==typeof d){for(k in d)b.G(a,c,k,d[k],1,s,g);h=1}else if(g!==n){e=l===n&&b.b(g);f&&(e?(e=c,c=function(a,c,d){return e.call(b(a),d)}):(c.call(a,g),c=null));if(c)for(;k<m;k++)c(a[k],d,e?g.call(a[k],k,c(a[k],d)):g,l);h=1}return h?a:f?c.call(a):
+m?c(a[0],d):s},now:function(){return(new Date).getTime()}});b.p.m=function(a){if(!ya)if(ya=b.Z(),"complete"===t.readyState)setTimeout(b.p,1);else if(t.addEventListener)t.addEventListener("DOMContentLoaded",C,!1),u.addEventListener("load",b.p,!1);else{t.attachEvent("onreadystatechange",C);u.attachEvent("onload",b.p);var c=!1;try{c=null==u.frameElement&&t.documentElement}catch(d){}c&&c.doScroll&&function h(){if(!b.yb){try{c.doScroll("left")}catch(a){return setTimeout(h,50)}b.p()}}()}return ya.m(a)};
+b.a("Boolean Number String Function Array Date RegExp Object".split(" "),function(a,b){$a["[object "+b+"]"]=b.toLowerCase()});Sa=b(t);var Ta={};b.la=function(a){function c(b){d=a.memory&&b;g=!0;f=s||0;s=0;e=k.length;for(h=!0;k&&f<e;f++)if(!1===k[f].apply(b[0],b[1])&&a.Lg){d=!1;break}h=!1;k&&(m?m.length&&c(m.shift()):d?k=[]:w.disable())}a="string"==typeof a?Ta[a]||P(a):b.extend({},a);var d,g,h,s,e,f,k=[],m=!a.Ud&&[],w={add:function(){if(k){var g=k.length;(function Sb(c){b.a(c,function(c,d){var g=b.type(d);
+"function"===g?(!a.unique||!w.s(d))&&k.push(d):d&&d.length&&"string"!==g&&Sb(d)})})(arguments);h?e=k.length:d&&(s=g,c(d))}return this},remove:function(){return k&&b.a(arguments,function(a,c){for(var d;-1<(d=b.N(c,k,d));)k.splice(d,1),h&&(d<=e&&e--,d<=f&&f--)}),this},s:function(a){return-1<b.N(a,k)},empty:function(){return k=[],this},disable:function(){return k=m=d=n,this},disabled:function(){return!k},Kd:function(){return m=n,d||w.disable(),this},Yf:function(){return!m},qb:function(a,b){return b=
+b||[],b=[a,b.slice?b.slice():b],k&&(!g||m)&&(h?m.push(b):c(b)),this},xa:function(){return w.qb(this,arguments),this},qf:function(){return!!g}};return w};b.extend({Z:function(a){var c=[["resolve","done",b.la("once memory"),"resolved"],["reject","fail",b.la("once memory"),"rejected"],["notify","progress",b.la("memory")]],d="pending",g={state:function(){return d},S:function(){return h.A(arguments).wa(arguments),this},te:function(){var a=arguments;return b.Z(function(d){b.a(c,function(c,g){var e=g[0],
+f=a[c];h[g[1]](b.b(f)?function(){var a=f.apply(this,arguments);a&&b.b(a.m)?a.m().A(d.zg).wa(d.zc).Db(d.eg):d[e+"With"](this===h?d:this,[a])}:d[e])});a=null}).m()},m:function(a){return null!=a?b.extend(a,g):g}},h={};return g.og=g.te,b.a(c,function(a,b){var e=b[2],f=b[3];g[b[1]]=e.add;f&&e.add(function(){d=f},c[a^1][2].disable,c[2][2].Kd);h[b[0]]=e.xa;h[b[0]+"With"]=e.qb}),g.m(h),a&&a.call(h,h),h},ih:function(a){function c(a,b,c){return function(d){b[a]=this;c[a]=1<arguments.length?R.call(arguments):
+d;c===f?e.Td(b,c):--s||e.ja(b,c)}}var d=0,g=R.call(arguments),h=g.length,s=1!==h||a&&b.b(a.m)?h:0,e=1===s?a:b.Z(),f,k,m;if(1<h)for(f=Array(h),k=Array(h),m=Array(h);d<h;d++)g[d]&&b.b(g[d].m)?g[d].m().A(c(d,m,g)).wa(e.zc).Db(c(d,k,f)):--s;return s||e.ja(m,g),e.m()}});b.d=function(){var a,c,d,g,h,e,l,f,k=t.createElement("div");k.setAttribute("className","t");k.innerHTML="  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";c=k.getElementsByTagName("*");d=k.getElementsByTagName("a")[0];
+if(!c||!d||!c.length)return{};g=t.createElement("select");h=g.appendChild(t.createElement("option"));c=k.getElementsByTagName("input")[0];d.style.cssText="top:1px;float:left;opacity:.5";a={oc:3===k.firstChild.nodeType,Lc:!k.getElementsByTagName("tbody").length,fc:!!k.getElementsByTagName("link").length,style:/top/.test(d.getAttribute("style")),Bd:"/a"===d.getAttribute("href"),opacity:/^0.5/.test(d.style.opacity),cssFloat:!!d.style.cssFloat,jd:"on"===c.value,Wd:h.selected,yd:"t"!==k.className,enctype:!!t.createElement("form").enctype,
+vb:"<:nav></:nav>"!==t.createElement("nav").cloneNode(!0).outerHTML,Re:"CSS1Compat"===t.compatMode,pe:!0,hd:!0,wd:!1,nb:!0,qc:!0,hc:!1,Fc:!1,Ac:!0,Qb:!0,xc:!1};c.checked=!0;a.Qd=c.cloneNode(!0).checked;g.disabled=!0;a.Vd=!h.disabled;try{delete k.test}catch(m){a.nb=!1}!k.addEventListener&&k.attachEvent&&k.fireEvent&&(k.attachEvent("onclick",f=function(){a.qc=!1}),k.cloneNode(!0).fireEvent("onclick"),k.detachEvent("onclick",f));c=t.createElement("input");c.value="t";c.setAttribute("type","radio");a.ee=
+"t"===c.value;c.setAttribute("checked","checked");c.setAttribute("name","t");k.appendChild(c);d=t.createDocumentFragment();d.appendChild(k.lastChild);a.Tb=d.cloneNode(!0).cloneNode(!0).lastChild.checked;a.$c=c.checked;d.removeChild(c);d.appendChild(k);if(k.attachEvent)for(e in{submit:!0,gd:!0,sf:!0})c="on"+e,(l=c in k)||(k.setAttribute(c,"return;"),l="function"==typeof k[c]),a[e+"Bubbles"]=l;return b(function(){var b,c,d,g,h=t.getElementsByTagName("body")[0];h&&(b=t.createElement("div"),b.style.cssText=
+"visibility:hidden;border:0;width:0;height:0;position:static;top:0;margin-top:1px",h.insertBefore(b,h.firstChild),c=t.createElement("div"),b.appendChild(c),c.innerHTML="<table><tr><td></td><td>t</td></tr></table>",d=c.getElementsByTagName("td"),d[0].style.cssText="padding:0;margin:0;border:0;display:none",l=0===d[0].offsetHeight,d[0].style.display="",d[1].style.display="none",a.ge=l&&0===d[0].offsetHeight,c.innerHTML="",c.style.cssText="box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;padding:1px;border:1px;display:block;width:4px;margin-top:1%;position:absolute;top:1%;",
+a.boxSizing=4===c.offsetWidth,a.sd=1!==h.offsetTop,u.getComputedStyle&&(a.xc="1%"!==(u.getComputedStyle(c,null)||{}).top,a.Qb="4px"===(u.getComputedStyle(c,null)||{width:"4px"}).width,g=t.createElement("div"),g.style.cssText=c.style.cssText="padding:0;margin:0;border:0;display:block;overflow:hidden;",g.style.marginRight=g.style.width="0",c.style.width="1px",c.appendChild(g),a.Ac=!parseFloat((u.getComputedStyle(g,null)||{}).marginRight)),"undefined"!=typeof c.style.zoom&&(c.innerHTML="",c.style.cssText=
+"padding:0;margin:0;border:0;display:block;overflow:hidden;width:1px;padding:1px;display:inline;zoom:1",a.hc=3===c.offsetWidth,c.style.display="block",c.style.overflow="visible",c.innerHTML="<div></div>",c.firstChild.style.width="5px",a.Fc=3!==c.offsetWidth,b.style.zoom=1),h.removeChild(b))}),d.removeChild(k),c=d=g=h=c=d=k=null,a}();var Ab=/(?:\{[\s\S]*\}|\[[\s\S]*\])$/,zb=/([A-Z])/g;b.extend({K:{},Xb:[],hh:0,expando:"jQuery"+(b.c.Pa+Math.random()).replace(/\D/g,""),Rd:{hf:!0,object:"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000",
+Me:!0},dc:function(a){return a=a.nodeType?b.K[a[b.expando]]:a[b.expando],!!a&&!ja(a)},data:function(a,c,d,g){if(b.na(a)){var h,e,l=b.expando,f="string"==typeof c,k=a.nodeType,m=k?b.K:a,w=k?a[l]:a[l]&&l;if(w&&m[w]&&(g||m[w].data)||!f||d!==n){w||(k?a[l]=w=b.Xb.pop()||b.h++:w=l);m[w]||(m[w]={},k||(m[w].toJSON=b.sc));if("object"==typeof c||"function"==typeof c)g?m[w]=b.extend(m[w],c):m[w].data=b.extend(m[w].data,c);return h=m[w],g||(h.data||(h.data={}),h=h.data),d!==n&&(h[b.U(c)]=d),f?(e=h[c],null==e&&
+(e=h[b.U(c)])):e=h,e}}},ia:function(a,c,d){if(b.na(a)){var g,h,e,l=a.nodeType,f=l?b.K:a,k=l?a[b.expando]:b.expando;if(f[k]){if(c&&(g=d?f[k]:f[k].data)){b.isArray(c)||(c in g?c=[c]:(c=b.U(c),c in g?c=[c]:c=c.split(" ")));h=0;for(e=c.length;h<e;h++)delete g[c[h]];if(!(d?ja:b.Ka)(g))return}if(!d&&(delete f[k].data,!ja(f[k])))return;l?b.oa([a],!0):b.d.nb||f!=f.window?delete f[k]:f[k]=null}}},e:function(a,c,d){return b.data(a,c,d,!0)},na:function(a){var c=a.nodeName&&b.Rd[a.nodeName.toLowerCase()];return!c||
+!0!==c&&a.getAttribute("classid")===c}});b.c.extend({data:function(a,c){var d,g,h,e,l,f=this[0],k=0,m=null;if(a===n){if(this.length&&(m=b.data(f),1===f.nodeType&&!b.e(f,"parsedAttrs"))){h=f.attributes;for(l=h.length;k<l;k++)e=h[k].name,e.indexOf("data-")||(e=b.U(e.substring(5)),ba(f,e,m[e]));b.e(f,"parsedAttrs",!0)}return m}return"object"==typeof a?this.a(function(){b.data(this,a)}):(d=a.split(".",2),d[1]=d[1]?"."+d[1]:"",g=d[1]+"!",b.G(this,function(c){if(c===n)return m=this.Gb("getData"+g,[d[0]]),
+m===n&&f&&(m=b.data(f,a),m=ba(f,a,m)),m===n&&d[1]?this.data(d[0]):m;d[1]=c;this.a(function(){var h=b(this);h.Gb("setData"+g,d);b.data(this,a,c);h.Gb("changeData"+g,d)})},null,c,1<arguments.length,null,!1))},ia:function(a){return this.a(function(){b.ia(this,a)})}});b.extend({j:function(a,c,d){var g;if(a)return c=(c||"fx")+"queue",g=b.e(a,c),d&&(!g||b.isArray(d)?g=b.e(a,c,b.fa(d)):g.push(d)),g||[]},ca:function(a,c){function d(){b.ca(a,c)}c=c||"fx";var g=b.j(a,c),h=g.length,e=g.shift(),l=b.bb(a,c);"inprogress"===
+e&&(e=g.shift(),h--);e&&("fx"===c&&g.unshift("inprogress"),delete l.stop,e.call(a,d,l));!h&&l&&l.empty.xa()},bb:function(a,c){var d=c+"queueHooks";return b.e(a,d)||b.e(a,d,{empty:b.la("once memory").add(function(){b.ia(a,c+"queue",!0);b.ia(a,d,!0)})})}});b.c.extend({j:function(a,c){var d=2;return"string"!=typeof a&&(c=a,a="fx",d--),arguments.length<d?b.j(this[0],a):c===n?this:this.a(function(){var d=b.j(this,a,c);b.bb(this,a);"fx"===a&&"inprogress"!==d[0]&&b.ca(this,a)})},ca:function(a){return this.a(function(){b.ca(this,
+a)})},Wb:function(a,c){return a=b.k?b.k.Ua[a]||a:a,c=c||"fx",this.j(c,function(b,c){var h=setTimeout(b,a);c.stop=function(){clearTimeout(h)}})},We:function(a){return this.j(a||"fx",[])},m:function(a,c){function d(){--h||e.ja(l,[l])}var g,h=1,e=b.Z(),l=this,f=this.length;"string"!=typeof a&&(c=a,a=n);for(a=a||"fx";f--;)(g=b.e(l[f],a+"queueHooks"))&&g.empty&&(h++,g.empty.add(d));return d(),e.m(c)}});var O,ab,bb,cb=/[\t\r\n]/g,Tb=/\r/g,Ub=/^(?:button|input)$/i,Vb=/^(?:button|input|object|select|textarea)$/i,
+Wb=/^a(?:rea|)$/i,db=/^(?:autofocus|autoplay|async|checked|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped|selected)$/i,eb=b.d.yd;b.c.extend({J:function(a,c){return b.G(this,b.J,a,c,1<arguments.length)},Sa:function(a){return this.a(function(){b.Sa(this,a)})},l:function(a,c){return b.G(this,b.l,a,c,1<arguments.length)},xg:function(a){return a=b.Ba[a]||a,this.a(function(){try{this[a]=n,delete this[a]}catch(b){}})},Wc:function(a){var c,d,g,h,e,l,f;if(b.b(a))return this.a(function(c){b(this).Wc(a.call(this,
+c,this.className))});if(a&&"string"==typeof a)for(c=a.split(S),d=0,g=this.length;d<g;d++)if(h=this[d],1===h.nodeType)if(h.className||1!==c.length){e=" "+h.className+" ";l=0;for(f=c.length;l<f;l++)0>e.indexOf(" "+c[l]+" ")&&(e+=c[l]+" ");h.className=b.trim(e)}else h.className=a;return this},he:function(a){var c,d,g,h,e,l,f;if(b.b(a))return this.a(function(c){b(this).he(a.call(this,c,this.className))});if(a&&"string"==typeof a||a===n)for(c=(a||"").split(S),l=0,f=this.length;l<f;l++)if(g=this[l],1===
+g.nodeType&&g.className){d=(" "+g.className+" ").replace(cb," ");h=0;for(e=c.length;h<e;h++)for(;0<=d.indexOf(" "+c[h]+" ");)d=d.replace(" "+c[h]+" "," ");g.className=a?b.trim(d):""}return this},we:function(a,c){var d=typeof a,g="boolean"==typeof c;return b.b(a)?this.a(function(d){b(this).we(a.call(this,d,this.className,c),c)}):this.a(function(){if("string"===d)for(var h,e=0,l=b(this),f=c,k=a.split(S);h=k[e++];)f=g?f:!l.cc(h),l[f?"addClass":"removeClass"](h);else if("undefined"===d||"boolean"===d)this.className&&
+b.e(this,"__className__",this.className),this.className=this.className||!1===a?"":b.e(this,"__className__")||""})},cc:function(a){a=" "+a+" ";for(var b=0,d=this.length;b<d;b++)if(1===this[b].nodeType&&0<=(" "+this[b].className+" ").replace(cb," ").indexOf(a))return!0;return!1},Fa:function(a){var c,d,g,h=this[0];if(arguments.length)return g=b.b(a),this.a(function(d){var h,e=b(this);1===this.nodeType&&(g?h=a.call(this,d,e.Fa()):h=a,null==h?h="":"number"==typeof h?h+="":b.isArray(h)&&(h=b.map(h,function(a){return null==
+a?"":a+""})),c=b.P[this.type]||b.P[this.nodeName.toLowerCase()],c&&"set"in c&&c.set(this,h,"value")!==n||(this.value=h))});if(h)return c=b.P[h.type]||b.P[h.nodeName.toLowerCase()],c&&"get"in c&&(d=c.get(h,"value"))!==n?d:(d=h.value,"string"==typeof d?d.replace(Tb,""):null==d?"":d)}});b.extend({P:{uc:{get:function(a){var b=a.attributes.value;return!b||b.specified?a.value:a.text}},select:{get:function(a){for(var c,d=a.options,g=a.selectedIndex,h=(a="select-one"===a.type||0>g)?null:[],e=a?g+1:d.length,
+l=0>g?e:a?g:0;l<e;l++)if(c=d[l],!(!c.selected&&l!==g||(b.d.Vd?c.disabled:null!==c.getAttribute("disabled"))||c.parentNode.disabled&&b.nodeName(c.parentNode,"optgroup"))){c=b(c).Fa();if(a)return c;h.push(c)}return h},set:function(a,c){var d=b.fa(c);return b(a).find("option").a(function(){this.selected=0<=b.N(b(this).Fa(),d)}),d.length||(a.selectedIndex=-1),d}}},Oe:{},J:function(a,c,d,g){var h,e,l=a.nodeType;if(a&&3!==l&&8!==l&&2!==l){if(g&&b.b(b.c[c]))return b(a)[c](d);if("undefined"==typeof a.getAttribute)return b.l(a,
+c,d);(g=1!==l||!b.Na(a))&&(c=c.toLowerCase(),e=b.T[c]||(db.test(c)?ab:O));if(d!==n){if(null===d){b.Sa(a,c);return}return e&&"set"in e&&g&&(h=e.set(a,d,c))!==n?h:(a.setAttribute(c,d+""),d)}return e&&"get"in e&&g&&null!==(h=e.get(a,c))?h:(h=a.getAttribute(c),null===h?n:h)}},Sa:function(a,c){var d,g,h,e,l=0;if(c&&1===a.nodeType)for(g=c.split(S);l<g.length;l++)(h=g[l])&&(d=b.Ba[h]||h,e=db.test(h),e||b.J(a,h,""),a.removeAttribute(eb?h:d),e&&d in a&&(a[d]=!1))},T:{type:{set:function(a,c){if(Ub.test(a.nodeName)&&
+a.parentNode)b.error("type property can't be changed");else if(!b.d.ee&&"radio"===c&&b.nodeName(a,"input")){var d=a.value;return a.setAttribute("type",c),d&&(a.value=d),c}}},value:{get:function(a,c){return O&&b.nodeName(a,"button")?O.get(a,c):c in a?a.value:null},set:function(a,c,d){if(O&&b.nodeName(a,"button"))return O.set(a,c,d);a.value=c}}},Ba:{Og:"tabIndex",wg:"readOnly","for":"htmlFor","class":"className",$f:"maxLength",Te:"cellSpacing",Se:"cellPadding",Bg:"rowSpan",af:"colSpan",fh:"useMap",
+vf:"frameBorder",ld:"contentEditable"},l:function(a,c,d){var g,h,e,l=a.nodeType;if(a&&3!==l&&8!==l&&2!==l)return e=1!==l||!b.Na(a),e&&(c=b.Ba[c]||c,h=b.D[c]),d!==n?h&&"set"in h&&(g=h.set(a,d,c))!==n?g:a[c]=d:h&&"get"in h&&null!==(g=h.get(a,c))?g:a[c]},D:{tabIndex:{get:function(a){var b=a.getAttributeNode("tabindex");return b&&b.specified?parseInt(b.value,10):Vb.test(a.nodeName)||Wb.test(a.nodeName)&&a.href?0:n}}}});ab={get:function(a,c){var d,g=b.l(a,c);return!0===g||"boolean"!=typeof g&&(d=a.getAttributeNode(c))&&
+!1!==d.nodeValue?c.toLowerCase():n},set:function(a,c,d){var g;return!1===c?b.Sa(a,d):(g=b.Ba[d]||d,g in a&&(a[g]=!0),a.setAttribute(d,d.toLowerCase())),d}};eb||(bb={name:!0,id:!0,coords:!0},O=b.P.button={get:function(a,b){var d;return d=a.getAttributeNode(b),d&&(bb[b]?""!==d.value:d.specified)?d.value:n},set:function(a,b,d){var g=a.getAttributeNode(d);return g||(g=t.createAttribute(d),a.setAttributeNode(g)),g.value=b+""}},b.a(["width","height"],function(a,c){b.T[c]=b.extend(b.T[c],{set:function(a,
+b){if(""===b)return a.setAttribute(c,"auto"),b}})}),b.T.ld={get:O.get,set:function(a,b,d){""===b&&(b="false");O.set(a,b,d)}});b.d.Bd||b.a(["href","src","width","height"],function(a,c){b.T[c]=b.extend(b.T[c],{get:function(a){a=a.getAttribute(c,2);return null===a?n:a}})});b.d.style||(b.T.style={get:function(a){return a.style.cssText.toLowerCase()||n},set:function(a,b){return a.style.cssText=b+""}});b.d.Wd||(b.D.selected=b.extend(b.D.selected,{get:function(a){a=a.parentNode;return a&&(a.selectedIndex,
+a.parentNode&&a.parentNode.selectedIndex),null}}));b.d.enctype||(b.Ba.enctype="encoding");b.d.jd||b.a(["radio","checkbox"],function(){b.P[this]={get:function(a){return null===a.getAttribute("value")?"on":a.value}}});b.a(["radio","checkbox"],function(){b.P[this]=b.extend(b.P[this],{set:function(a,c){if(b.isArray(c))return a.checked=0<=b.N(b(a).Fa(),c)}})});var Ja=/^(?:textarea|input|select)$/i,fb=/^([^\.]*|)(?:\.(.+)|)$/,yb=/(?:^|\s)hover(\.\S+|)\b/,Xb=/^key/,Yb=/^(?:mouse|contextmenu)|click/,gb=/^(?:focusinfocus|focusoutblur)$/;
+b.event={add:function(a,c,d,g,h){var e,l,f,k,m,w,p,r,q;if(3!==a.nodeType&&8!==a.nodeType&&c&&d&&(e=b.e(a))){d.M&&(p=d,d=p.M,h=p.i);d.h||(d.h=b.h++);(f=e.L)||(e.L=f={});(l=e.handle)||(e.handle=l=function(a){return"undefined"==typeof b||a&&b.event.Hb===a.type?n:b.event.ob.apply(l.f,arguments)},l.f=a);c=b.trim(x(c)).split(" ");for(e=0;e<c.length;e++)k=fb.exec(c[e])||[],m=k[1],w=(k[2]||"").split(".").sort(),q=b.event.u[m]||{},m=(h?q.ta:q.gb)||m,q=b.event.u[m]||{},k=b.extend({type:m,Aa:k[1],data:g,M:d,
+h:d.h,i:h,Qa:h&&b.r.match.Qa.test(h),H:w.join(".")},p),r=f[m],r||(r=f[m]=[],r.mb=0,q.Ca&&!1!==q.Ca.call(a,g,w,l)||(a.addEventListener?a.addEventListener(m,l,!1):a.attachEvent&&a.attachEvent("on"+m,l))),q.add&&(q.add.call(a,k),k.M.h||(k.M.h=d.h)),h?r.splice(r.mb++,0,k):r.push(k),b.event.global[m]=!0;a=null}},global:{},remove:function(a,c,d,g,h){var e,l,f,k,m,n,p,r,q,u,t=b.dc(a)&&b.e(a);if(t&&(p=t.L)){c=b.trim(x(c||"")).split(" ");for(e=0;e<c.length;e++)if(l=fb.exec(c[e])||[],f=k=l[1],l=l[2],f){r=b.event.u[f]||
+{};f=(g?r.ta:r.gb)||f;q=p[f]||[];m=q.length;l=l?RegExp("(^|\\.)"+l.split(".").sort().join("\\.(?:.*\\.|)")+"(\\.|$)"):null;for(n=0;n<q.length;n++)u=q[n],!h&&k!==u.Aa||d&&d.h!==u.h||l&&!l.test(u.H)||g&&!(g===u.i||"**"===g&&u.i)||(q.splice(n--,1),u.i&&q.mb--,!r.remove||r.remove.call(a,u));0===q.length&&m!==q.length&&((!r.Da||!1===r.Da.call(a,l,t.handle))&&b.Bc(a,f,t.handle),delete p[f])}else for(f in p)b.event.remove(a,f+c[e],d,g,!0);b.Ka(p)&&(delete t.handle,b.ia(a,"events",!0))}},nd:{getData:!0,setData:!0,
+Ue:!0},n:function(a,c,d,g){if(!d||3!==d.nodeType&&8!==d.nodeType){var h,e,l,f,k,m,r,p=a.type||a;f=[];if(!gb.test(p+b.event.Hb)&&(0<=p.indexOf("!")&&(p=p.slice(0,-1),h=!0),0<=p.indexOf(".")&&(f=p.split("."),p=f.shift(),f.sort()),d&&!b.event.nd[p]||b.event.global[p]))if(a="object"==typeof a?a[b.expando]?a:new b.Q(p,a):new b.Q(p),a.type=p,a.Ma=!0,a.td=h,a.H=f.join("."),a.pc=a.H?RegExp("(^|\\.)"+f.join("\\.(?:.*\\.|)")+"(\\.|$)"):null,f=0>p.indexOf(":")?"on"+p:"",d){if(a.result=n,a.target||(a.target=
+d),c=null!=c?b.fa(c):[],c.unshift(a),k=b.event.u[p]||{},!k.n||!1!==k.n.apply(d,c)){r=[[d,k.gb||p]];if(!g&&!k.Pd&&!b.X(d)){e=k.ta||p;h=gb.test(e+p)?d:d.parentNode;for(l=d;h;h=h.parentNode)r.push([h,e]),l=h;l===(d.ownerDocument||t)&&r.push([l.defaultView||l.parentWindow||u,e])}for(e=0;e<r.length&&!a.xb();e++)h=r[e][0],a.type=r[e][1],(m=(b.e(h,"events")||{})[a.type]&&b.e(h,"handle"))&&m.apply(h,c),(m=f&&h[f])&&b.na(h)&&m.apply&&!1===m.apply(h,c)&&a.preventDefault();return a.type=p,!g&&!a.Ja()&&(!k.F||
+!1===k.F.apply(d.ownerDocument,c))&&("click"!==p||!b.nodeName(d,"a"))&&b.na(d)&&f&&d[p]&&("focus"!==p&&"blur"!==p||0!==a.target.offsetWidth)&&!b.X(d)&&(l=d[f],l&&(d[f]=null),b.event.Hb=p,d[p](),b.event.Hb=n,l&&(d[f]=l)),a.result}}else for(e in d=b.K,d)d[e].L&&d[e].L[p]&&b.event.n(a,c,d[e].handle.f,!0)}},ob:function(a){a=b.event.Zb(a||u.event);var c,d,g,h,e,l,f=(b.e(this,"events")||{})[a.type]||[],k=f.mb,m=R.call(arguments),r=!a.td&&!a.H,p=b.event.u[a.type]||{},q=[];m[0]=a;a.qd=this;if(!p.$d||!1!==
+p.$d.call(this,a)){if(k&&(!a.button||"click"!==a.type))for(d=a.target;d!=this;d=d.parentNode||this)if(!0!==d.disabled||"click"!==a.type){h={};e=[];for(c=0;c<k;c++)g=f[c],l=g.i,h[l]===n&&(h[l]=g.Qa?0<=b(l,this).index(d):b.find(l,this,null,[d]).length),h[l]&&e.push(g);e.length&&q.push({f:d,matches:e})}f.length>k&&q.push({f:this,matches:f.slice(k)});for(c=0;c<q.length&&!a.xb();c++)for(h=q[c],a.currentTarget=h.f,d=0;d<h.matches.length&&!a.Ed();d++)if(g=h.matches[d],r||!a.H&&!g.H||a.pc&&a.pc.test(g.H))a.data=
+g.data,a.Ha=g,g=((b.event.u[g.Aa]||{}).handle||g.M).apply(h.f,m),g!==n&&(a.result=g,!1===g&&(a.preventDefault(),a.stopPropagation()));return p.yc&&p.yc.call(this,a),a.result}},O:"attrChange attrName relatedNode srcElement altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),rb:{},Jd:{O:["char","charCode","key","keyCode"],filter:function(a,b){return null==a.which&&(a.which=null!=b.charCode?b.charCode:b.keyCode),a}},Md:{O:"button buttons clientX clientY fromElement offsetX offsetY pageX pageY screenX screenY toElement".split(" "),
+filter:function(a,b){var d,g,h,e=b.button,l=b.fromElement;return null==a.pageX&&null!=b.clientX&&(d=a.target.ownerDocument||t,g=d.documentElement,h=d.body,a.pageX=b.clientX+(g&&g.scrollLeft||h&&h.scrollLeft||0)-(g&&g.clientLeft||h&&h.clientLeft||0),a.pageY=b.clientY+(g&&g.scrollTop||h&&h.scrollTop||0)-(g&&g.clientTop||h&&h.clientTop||0)),!a.relatedTarget&&l&&(a.relatedTarget=l===a.target?b.toElement:l),!a.which&&e!==n&&(a.which=e&1?1:e&2?3:e&4?2:0),a}},Zb:function(a){if(a[b.expando])return a;var c,
+d,g=a,h=b.event.rb[a.type]||{},e=h.O?this.O.concat(h.O):this.O;a=b.Q(g);for(c=e.length;c;)d=e[--c],a[d]=g[d];return a.target||(a.target=g.srcElement||t),3===a.target.nodeType&&(a.target=a.target.parentNode),a.metaKey=!!a.metaKey,h.filter?h.filter(a,g):a},u:{load:{Pd:!0},focus:{ta:"focusin"},blur:{ta:"focusout"},Pe:{Ca:function(a,c,d){b.X(this)&&(this.onbeforeunload=d)},Da:function(a,b){this.onbeforeunload===b&&(this.onbeforeunload=null)}}},Ta:function(a,c,d,g){a=b.extend(new b.Q,d,{type:a,mc:!0,Ra:{}});
+g?b.event.n(a,null,c):b.event.ob.call(c,a);a.Ja()&&d.preventDefault()}};b.event.handle=b.event.ob;b.Bc=t.removeEventListener?function(a,b,d){a.removeEventListener&&a.removeEventListener(b,d,!1)}:function(a,b,d){b="on"+b;a.detachEvent&&("undefined"==typeof a[b]&&(a[b]=null),a.detachEvent(b,d))};b.Q=function(a,c){if(!(this instanceof b.Q))return new b.Q(a,c);a&&a.type?(this.Ra=a,this.type=a.type,this.Ja=a.defaultPrevented||!1===a.returnValue||a.xd&&a.xd()?z:L):this.type=a;c&&b.extend(this,c);this.timeStamp=
+a&&a.timeStamp||b.now();this[b.expando]=!0};b.Q.prototype={preventDefault:function(){this.Ja=z;var a=this.Ra;a&&(a.preventDefault?a.preventDefault():a.returnValue=!1)},stopPropagation:function(){this.xb=z;var a=this.Ra;a&&(a.stopPropagation&&a.stopPropagation(),a.cancelBubble=!0)},Ja:L,xb:L,Ed:L};b.a({Nd:"mouseover",Od:"mouseout"},function(a,c){b.event.u[a]={ta:c,gb:c,handle:function(a){var g,e=a.relatedTarget,f=a.Ha;if(!e||e!==this&&!b.contains(this,e))a.type=f.Aa,g=f.M.apply(this,arguments),a.type=
+c;return g}}});b.d.pe||(b.event.u.submit={Ca:function(){if(b.nodeName(this,"form"))return!1;b.event.add(this,"click._submit keypress._submit",function(a){a=a.target;(a=b.nodeName(a,"input")||b.nodeName(a,"button")?a.form:n)&&!b.e(a,"_submit_attached")&&(b.event.add(a,"submit._submit",function(a){a.Nb=!0}),b.e(a,"_submit_attached",!0))})},yc:function(a){a.Nb&&(delete a.Nb,this.parentNode&&!a.Ma&&b.event.Ta("submit",this.parentNode,a,!0))},Da:function(){if(b.nodeName(this,"form"))return!1;b.event.remove(this,
+"._submit")}});b.d.hd||(b.event.u.gd={Ca:function(){if(Ja.test(this.nodeName)){if("checkbox"===this.type||"radio"===this.type)b.event.add(this,"propertychange._change",function(a){"checked"===a.Ra.propertyName&&(this.Mb=!0)}),b.event.add(this,"click._change",function(a){this.Mb&&!a.Ma&&(this.Mb=!1);b.event.Ta("change",this,a,!0)});return!1}b.event.add(this,"beforeactivate._change",function(a){a=a.target;Ja.test(a.nodeName)&&!b.e(a,"_change_attached")&&(b.event.add(a,"change._change",function(a){this.parentNode&&
+!a.mc&&!a.Ma&&b.event.Ta("change",this.parentNode,a,!0)}),b.e(a,"_change_attached",!0))})},handle:function(a){var b=a.target;if(this!==b||a.mc||a.Ma||"radio"!==b.type&&"checkbox"!==b.type)return a.Ha.M.apply(this,arguments)},Da:function(){return b.event.remove(this,"._change"),!Ja.test(this.nodeName)}});b.d.wd||b.a({focus:"focusin",blur:"focusout"},function(a,c){function d(a){b.event.Ta(c,a.target,b.event.Zb(a),!0)}var g=0;b.event.u[c]={Ca:function(){0===g++&&t.addEventListener(a,d,!0)},Da:function(){0===
+--g&&t.removeEventListener(a,d,!0)}}});b.c.extend({Y:function(a,c,d,g,e){var f,l;if("object"==typeof a){"string"!=typeof c&&(d=d||c,c=n);for(l in a)this.Y(l,c,d,a[l],e);return this}null==d&&null==g?(g=c,d=c=n):null==g&&("string"==typeof c?(g=d,d=n):(g=d,d=c,c=n));if(!1===g)g=L;else if(!g)return this;return 1===e&&(f=g,g=function(a){return b().I(a),f.apply(this,arguments)},g.h=f.h||(f.h=b.h++)),this.a(function(){b.event.add(this,a,g,d,c)})},ig:function(a,b,d,g){return this.Y(a,b,d,g,1)},I:function(a,
+c,d){var g,e;if(a&&a.preventDefault&&a.Ha)return g=a.Ha,b(a.qd).I(g.H?g.Aa+"."+g.H:g.Aa,g.i,g.M),this;if("object"==typeof a){for(e in a)this.I(e,c,a[e]);return this}if(!1===c||"function"==typeof c)d=c,c=n;return!1===d&&(d=L),this.a(function(){b.event.remove(this,a,d,c)})},bind:function(a,b,d){return this.Y(a,null,b,d)},Yg:function(a,b){return this.I(a,null,b)},Xf:function(a,c,d){return b(this.v).Y(a,this.i,c,d),this},gf:function(a,c){return b(this.v).I(a,this.i||"**",c),this},ef:function(a,b,d,g){return this.Y(b,
+a,d,g)},Zg:function(a,b,d){return 1===arguments.length?this.I(a,"**"):this.I(b,a||"**",d)},n:function(a,c){return this.a(function(){b.event.n(a,c,this)})},Gb:function(a,c){if(this[0])return b.event.n(a,c,this[0],!0)},toggle:function(a){function c(c){var g=(b.e(this,"lastToggle"+a.h)||0)%e;return b.e(this,"lastToggle"+a.h,g+1),c.preventDefault(),d[g].apply(this,arguments)||!1}var d=arguments,g=a.h||b.h++,e=0;for(c.h=g;e<d.length;)d[e++].h=g;return this.click(c)},Ad:function(a,b){return this.Nd(a).Od(b||
+a)}});b.a("blur focus focusin focusout load resize scroll unload click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup error contextmenu".split(" "),function(a,c){b.c[c]=function(a,b){return null==b&&(b=a,a=null),0<arguments.length?this.Y(c,null,a,b):this.n(c)};Xb.test(c)&&(b.event.rb[c]=b.event.Jd);Yb.test(c)&&(b.event.rb[c]=b.event.Md)});(function(a,c){function d(a){var b=V.createElement("div");try{return a(b)}catch(c){return!1}finally{}}
+function g(){var a={},b=[];return e(function(c,d){return b.push(c)>v.fd&&delete a[b.shift()],a[c+" "]=d},a)}function e(a,b){return a[I]=null==b||b,a}function f(a,b,c,d){c=c||[];b=b||V;var g,e,h,l,k=b.nodeType;if(!a||"string"!=typeof a)return c;if(1!==k&&9!==k)return[];h=G(b);if(!h&&!d&&(g=xa.exec(a)))if(l=g[1])if(9===k){e=b.getElementById(l);if(!e||!e.parentNode)return c;if(e.id===l)return c.push(e),c}else{if(b.ownerDocument&&(e=b.ownerDocument.getElementById(l))&&hb(b,e)&&e.id===l)return c.push(e),
+c}else{if(g[2])return E.apply(c,ha.call(b.getElementsByTagName(a),0)),c;if((l=g[3])&&Z&&b.getElementsByClassName)return E.apply(c,ha.call(b.getElementsByClassName(l),0)),c}return C(a.replace(Q,"$1"),b,c,d,h)}function l(a){return function(b){return"input"===b.nodeName.toLowerCase()&&b.type===a}}function k(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function m(a){return e(function(b){return b=+b,e(function(c,d){for(var g,e=a([],c.length,b),h=e.length;h--;)c[g=
+e[h]]&&(c[g]=!(d[g]=c[g]))})})}function r(a,b,c){if(a===b)return c;for(a=a.nextSibling;a;){if(a===b)return-1;a=a.nextSibling}return 1}function n(a,b){var c,d,g,e,h,l,k;if(h=J[I][a+" "])return b?0:h.slice(0);h=a;l=[];for(k=v.ae;h;){if(!c||(d=W.exec(h)))d&&(h=h.slice(d[0].length)||h),l.push(g=[]);c=!1;if(d=X.exec(h))g.push(c=new K(d.shift())),h=h.slice(c.length),c.type=d[0].replace(Q," ");for(e in v.filter)(d=T[e].exec(h))&&(!k[e]||(d=k[e](d)))&&(g.push(c=new K(d.shift())),h=h.slice(c.length),c.type=
+e,c.matches=d);if(!c)break}return b?h.length:h?f.error(a):J(a,l).slice(0)}function p(a,b,c){var d=b.dir,g=c&&"parentNode"===b.dir,e=Zb++;return b.ya?function(b,c,e){for(;b=b[d];)if(g||1===b.nodeType)return a(b,c,e)}:function(b,c,h){if(!h)for(var l,f=sa+" "+e+" ",k=f+x;b=b[d];){if(g||1===b.nodeType){if((l=b[I])===k)return b.Fb;if("string"==typeof l&&0===l.indexOf(f)){if(b.Fb)return b}else{b[I]=k;if(a(b,c,h))return b.Fb=!0,b;b.Fb=!1}}}else for(;b=b[d];)if((g||1===b.nodeType)&&a(b,c,h))return b}}function q(a){return 1<
+a.length?function(b,c,d){for(var g=a.length;g--;)if(!a[g](b,c,d))return!1;return!0}:a[0]}function u(a,b,c,d,g){for(var e,h=[],l=0,f=a.length,k=null!=b;l<f;l++)if(e=a[l])if(!c||c(e,d,g))h.push(e),k&&b.push(l);return h}function t(a,b,c,d,g,l){return d&&!d[I]&&(d=t(d)),g&&!g[I]&&(g=t(g,l)),e(function(e,h,l,k){var m,p,r=[],n=[],q=h.length,H;if(!(H=e)){H=b||"*";for(var w=l.nodeType?[l]:l,M=[],t=0,Ga=w.length;t<Ga;t++)f(H,w[t],M);H=M}H=!a||!e&&b?H:u(H,r,a,l,k);w=c?g||(e?a:q||d)?[]:h:H;c&&c(H,w,l,k);if(d)for(m=
+u(w,n),d(m,[],l,k),l=m.length;l--;)if(p=m[l])w[n[l]]=!(H[n[l]]=p);if(e){if(g||a){if(g){m=[];for(l=w.length;l--;)(p=w[l])&&m.push(H[l]=p);g(null,w=[],m,k)}for(l=w.length;l--;)(p=w[l])&&-1<(m=g?Ka.call(e,p):r[l])&&(e[m]=!(h[m]=p))}}else w=u(w===h?w.splice(q,w.length):w),g?g(null,h,w,k):E.apply(h,w)})}function N(a){var b,c,d,g=a.length,e=v.ha[a[0].type];c=e||v.ha[" "];for(var h=e?1:0,l=p(function(a){return a===b},c,!0),f=p(function(a){return-1<Ka.call(b,a)},c,!0),k=[function(a,c,d){return!e&&(d||c!==
+Aa)||((b=c).nodeType?l(a,c,d):f(a,c,d))}];h<g;h++)if(c=v.ha[a[h].type])k=[p(q(k),c)];else{c=v.filter[a[h].type].apply(null,a[h].matches);if(c[I]){for(d=++h;d<g&&!v.ha[a[d].type];d++);return t(1<h&&q(k),1<h&&a.slice(0,h-1).join("").replace(Q,"$1"),c,h<d&&N(a.slice(h,d)),d<g&&N(a=a.slice(d)),d<g&&a.join(""))}k.push(c)}return q(k)}function A(a,b){function c(e,h,l,k,m){var p,r,H=[],n=0,q="0",w=e&&[],t=null!=m,M=Aa,Ga=e||g&&v.find.$a("*",m&&h.parentNode||h),N=sa+=null==M?1:Math.E;for(t&&(Aa=h!==V&&h,x=
+c.Yb);null!=(m=Ga[q]);q++){if(g&&m){for(p=0;r=a[p];p++)if(r(m,h,l)){k.push(m);break}t&&(sa=N,x=++c.Yb)}d&&((m=!r&&m)&&n--,e&&w.push(m))}n+=q;if(d&&q!==n){for(p=0;r=b[p];p++)r(w,H,h,l);if(e){if(0<n)for(;q--;)w[q]||H[q]||(H[q]=L.call(k));H=u(H)}E.apply(k,H);t&&!e&&0<H.length&&1<n+b.length&&f.Nc(k)}return t&&(sa=N,Aa=M),w}var d=0<b.length,g=0<a.length;return c.Yb=0,d?e(c):c}function C(a,b,c,d,g){var e,h,l,f,k=n(a);if(!d&&1===k.length){h=k[0]=k[0].slice(0);if(2<h.length&&"ID"===(l=h[0]).type&&9===b.nodeType&&
+!g&&v.ha[h[1].type]){b=v.find.Za(l.matches[0].replace(ga,""),b,g)[0];if(!b)return c;a=a.slice(h.shift().length)}for(e=T.Tc.test(a)?-1:h.length-1;0<=e;e--){l=h[e];if(v.ha[f=l.type])break;if(f=v.find[f])if(d=f(l.matches[0].replace(ga,""),U.test(h[0].type)&&b.parentNode||b,g)){h.splice(e,1);a=d.length&&h.join("");if(!a)return E.apply(c,ha.call(d,0)),c;break}}}return La(a,k)(d,b,g,c,U.test(a)),c}function y(){}var x,z,v,B,G,hb,La,Ma,F,Aa,ib=!0,I=("sizcache"+Math.random()).replace(".",""),K=String,V=a.document,
+D=V.documentElement,sa=0,Zb=0,L=[].pop,E=[].push,ha=[].slice,Ka=[].indexOf||function(a){for(var b=0,c=this.length;b<c;b++)if(this[b]===a)return b;return-1},P=g(),J=g(),R=g(),O="\\[[\\x20\\t\\r\\n\\f]*((?:\\\\.|[-\\w]|[^\\x00-\\xa0])+)[\\x20\\t\\r\\n\\f]*(?:([*^$|!~]?=)[\\x20\\t\\r\\n\\f]*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|("+"(?:\\\\.|[-\\w]|[^\\x00-\\xa0])+".replace("w","w#")+")|)|)[\\x20\\t\\r\\n\\f]*\\]",S=":((?:\\\\.|[-\\w]|[^\\x00-\\xa0])+)(?:\\((?:(['\"])((?:\\\\.|[^\\\\])*?)\\2|([^()[\\]]*|(?:(?:"+
+O+")|[^:]|\\\\.)*|.*))\\)|)",Q=RegExp("^[\\x20\\t\\r\\n\\f]+|((?:^|[^\\\\])(?:\\\\.)*)[\\x20\\t\\r\\n\\f]+$","g"),W=/^[\x20\t\r\n\f]*,[\x20\t\r\n\f]*/,X=/^[\x20\t\r\n\f]*([\x20\t\r\n\f>+~])[\x20\t\r\n\f]*/,Y=RegExp(S),xa=/^(?:#([\w\-]+)|(\w+)|\.([\w\-]+))$/,U=/[\x20\t\r\n\f]*[+~]/,aa=/h\d/i,ba=/input|select|textarea|button/i,ga=/\\(?!\\)/g,T={Za:/^#((?:\\.|[-\w]|[^\x00-\xa0])+)/,Kb:/^\.((?:\\.|[-\w]|[^\x00-\xa0])+)/,Sc:/^\[name=['"]?((?:\\.|[-\w]|[^\x00-\xa0])+)['"]?\]/,$a:RegExp("^("+"(?:\\\\.|[-\\w]|[^\\x00-\\xa0])+".replace("w",
+"w*")+")"),Jb:RegExp("^"+O),Lb:RegExp("^"+S),Tc:/:(even|odd|eq|gt|lt|nth|first|last)(?:\([\x20\t\r\n\f]*((?:-\d)?\d*)[\x20\t\r\n\f]*\)|)(?=[^-]|$)/i,Ya:RegExp("^:(only|nth|first|last)-child(?:\\([\\x20\\t\\r\\n\\f]*(even|odd|(([+-]|)(\\d*)n|)[\\x20\\t\\r\\n\\f]*(?:([+-]|)[\\x20\\t\\r\\n\\f]*(\\d+)|))[\\x20\\t\\r\\n\\f]*\\)|)","i"),Qa:RegExp("^[\\x20\\t\\r\\n\\f]*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\([\\x20\\t\\r\\n\\f]*((?:-\\d)?\\d*)[\\x20\\t\\r\\n\\f]*\\)|)(?=[^-]|$)","i")},O=d(function(a){return a.appendChild(V.createComment("")),
+!a.getElementsByTagName("*").length}),ca=d(function(a){return a.innerHTML="<a href='#'></a>",a.firstChild&&"undefined"!==typeof a.firstChild.getAttribute&&"#"===a.firstChild.getAttribute("href")}),da=d(function(a){a.innerHTML="<select></select>";a=typeof a.lastChild.getAttribute("multiple");return"boolean"!==a&&"string"!==a}),Z=d(function(a){return a.innerHTML="<div class='hidden e'></div><div class='hidden'></div>",a.getElementsByClassName&&a.getElementsByClassName("e").length?(a.lastChild.className=
+"e",2===a.getElementsByClassName("e").length):!1}),ea=d(function(a){a.id=I+0;a.innerHTML="<a name='"+I+"'></a><div name='"+I+"'></div>";D.insertBefore(a,D.firstChild);var b=V.getElementsByName&&V.getElementsByName(I).length===2+V.getElementsByName(I+0).length;return z=!V.getElementById(I),D.removeChild(a),b});try{ha.call(D.childNodes,0)[0].nodeType}catch(fa){ha=function(a){for(var b,c=[];b=this[a];a++)c.push(b);return c}}f.matches=function(a,b){return f(a,null,null,b)};f.matchesSelector=function(a,
+b){return 0<f(b,null,null,[a]).length};B=f.zd=function(a){var b,c="",d=0;if(b=a.nodeType)if(1===b||9===b||11===b){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=B(a)}else{if(3===b||4===b)return a.nodeValue}else for(;b=a[d];d++)c+=B(b);return c};G=f.Hd=function(a){return(a=a&&(a.ownerDocument||a).documentElement)?"HTML"!==a.nodeName:!1};hb=f.contains=D.contains?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!!(d&&
+1===d.nodeType&&c.contains&&c.contains(d))}:D.compareDocumentPosition?function(a,b){return b&&!!(a.compareDocumentPosition(b)&16)}:function(a,b){for(;b=b.parentNode;)if(b===a)return!0;return!1};f.J=function(a,b){var c,d=G(a);return d||(b=b.toLowerCase()),(c=v.bd[b])?c(a):d||da?a.getAttribute(b):(c=a.getAttributeNode(b),c?"boolean"==typeof a[b]?a[b]?b:null:c.specified?c.value:null:null)};v=f.le={fd:50,cf:e,match:T,bd:ca?{}:{href:function(a){return a.getAttribute("href",2)},type:function(a){return a.getAttribute("type")}},
+find:{Za:z?function(a,b,c){if("undefined"!==typeof b.getElementById&&!c)return(a=b.getElementById(a))&&a.parentNode?[a]:[]}:function(a,b,d){if("undefined"!==typeof b.getElementById&&!d)return(b=b.getElementById(a))?b.id===a||"undefined"!==typeof b.getAttributeNode&&b.getAttributeNode("id").value===a?[b]:c:[]},$a:O?function(a,b){if("undefined"!==typeof b.getElementsByTagName)return b.getElementsByTagName(a)}:function(a,b){var c=b.getElementsByTagName(a);if("*"===a){for(var d,g=[],e=0;d=c[e];e++)1===
+d.nodeType&&g.push(d);return g}return c},Sc:ea&&function(a,b){if("undefined"!==typeof b.getElementsByName)return b.getElementsByName(name)},Kb:Z&&function(a,b,c){if("undefined"!==typeof b.getElementsByClassName&&!c)return b.getElementsByClassName(a)}},ha:{">":{dir:"parentNode",ya:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",ya:!0},"~":{dir:"previousSibling"}},ae:{Jb:function(a){return a[1]=a[1].replace(ga,""),a[3]=(a[4]||a[5]||"").replace(ga,""),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,
+4)},Ya:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1]?(a[2]||f.error(a[0]),a[3]=+(a[3]?a[4]+(a[5]||1):2*("even"===a[2]||"odd"===a[2])),a[4]=+(a[6]+a[7]||"odd"===a[2])):a[2]&&f.error(a[0]),a},Lb:function(a){var b,c;if(T.Ya.test(a[0]))return null;if(a[3])a[2]=a[3];else if(b=a[4])Y.test(b)&&(c=n(b,!0))&&(c=b.indexOf(")",b.length-c)-b.length)&&(b=b.slice(0,c),a[0]=a[0].slice(0,c)),a[2]=b;return a.slice(0,3)}},filter:{Za:z?function(a){return a=a.replace(ga,""),function(b){return b.getAttribute("id")===
+a}}:function(a){return a=a.replace(ga,""),function(b){return(b="undefined"!==typeof b.getAttributeNode&&b.getAttributeNode("id"))&&b.value===a}},$a:function(a){return"*"===a?function(){return!0}:(a=a.replace(ga,"").toLowerCase(),function(b){return b.nodeName&&b.nodeName.toLowerCase()===a})},Kb:function(a){var b=P[I][a+" "];return b||(b=RegExp("(^|[\\x20\\t\\r\\n\\f])"+a+"([\\x20\\t\\r\\n\\f]|$)"))&&P(a,function(a){return b.test(a.className||"undefined"!==typeof a.getAttribute&&a.getAttribute("class")||
+"")})},Jb:function(a,b,c){return function(d){d=f.J(d,a);return null==d?"!="===b:b?(d+="","="===b?d===c:"!="===b?d!==c:"^="===b?c&&0===d.indexOf(c):"*="===b?c&&-1<d.indexOf(c):"$="===b?c&&d.substr(d.length-c.length)===c:"~="===b?-1<(" "+d+" ").indexOf(c):"|="===b?d===c||d.substr(0,c.length+1)===c+"-":!1):!0}},Ya:function(a,b,c,d){return"nth"===a?function(a){var b,g;b=a.parentNode;if(1===c&&0===d)return!0;if(b)for(g=0,b=b.firstChild;b&&(1!==b.nodeType||(g++,a!==b));b=b.nextSibling);return g-=d,g===
+c||0===g%c&&0<=g/c}:function(b){var c=b;switch(a){case "only":case "first":for(;c=c.previousSibling;)if(1===c.nodeType)return!1;if("first"===a)return!0;c=b;case "last":for(;c=c.nextSibling;)if(1===c.nodeType)return!1;return!0}}},Lb:function(a,b){var c,d=v.ga[a]||v.Ec[a.toLowerCase()]||f.error("unsupported pseudo: "+a);return d[I]?d(b):1<d.length?(c=[a,a,"",b],v.Ec.hasOwnProperty(a.toLowerCase())?e(function(a,c){for(var g,e=d(a,b),h=e.length;h--;)g=Ka.call(a,e[h]),a[g]=!(c[g]=e[h])}):function(a){return d(a,
+0,c)}):d}},ga:{Sd:e(function(a){var b=[],c=[],d=La(a.replace(Q,"$1"));return d[I]?e(function(a,b,c,g){g=d(a,null,g,[]);for(var e=a.length;e--;)if(c=g[e])a[e]=!(b[e]=c)}):function(a,g,e){return b[0]=a,d(b,null,e,c),!c.pop()}}),s:e(function(a){return function(b){return 0<f(a,b).length}}),contains:e(function(a){return function(b){return-1<(b.textContent||b.innerText||B(b)).indexOf(a)}}),enabled:function(a){return!1===a.disabled},disabled:function(a){return!0===a.disabled},checked:function(a){var b=a.nodeName.toLowerCase();
+return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,!0===a.selected},parent:function(a){return!v.ga.empty(a)},empty:function(a){var b;for(a=a.firstChild;a;){if("@"<a.nodeName||3===(b=a.nodeType)||4===b)return!1;a=a.nextSibling}return!0},Bf:function(a){return aa.test(a.nodeName)},text:function(a){var b,c;return"input"===a.nodeName.toLowerCase()&&"text"===(b=a.type)&&(null==(c=a.getAttribute("type"))||c.toLowerCase()===b)},
+ug:l("radio"),Ve:l("checkbox"),file:l("file"),Zd:l("password"),Ff:l("image"),submit:k("submit"),reset:k("reset"),button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},input:function(a){return ba.test(a.nodeName)},focus:function(a){var b=a.ownerDocument;return a===b.activeElement&&(!b.hasFocus||b.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},cb:function(a){return a===a.ownerDocument.activeElement},ya:m(function(){return[0]}),zb:m(function(a,b){return[b-
+1]}),va:m(function(a,b,c){return[0>c?c+b:c]}),jf:m(function(a,b){for(var c=0;c<b;c+=2)a.push(c);return a}),hg:m(function(a,b){for(var c=1;c<b;c+=2)a.push(c);return a}),Zf:m(function(a,b,c){for(b=0>c?c+b:c;0<=--b;)a.push(b);return a}),Af:m(function(a,b,c){for(c=0>c?c+b:c;++c<b;)a.push(c);return a})}};Ma=D.compareDocumentPosition?function(a,b){return a===b?(F=!0,0):(a.compareDocumentPosition&&b.compareDocumentPosition?a.compareDocumentPosition(b)&4:a.compareDocumentPosition)?-1:1}:function(a,b){if(a===
+b)return F=!0,0;if(a.sourceIndex&&b.sourceIndex)return a.sourceIndex-b.sourceIndex;var c,d,g=[],e=[];c=a.parentNode;d=b.parentNode;var h=c;if(c===d)return r(a,b);if(!c)return-1;if(!d)return 1;for(;h;)g.unshift(h),h=h.parentNode;for(h=d;h;)e.unshift(h),h=h.parentNode;c=g.length;d=e.length;for(h=0;h<c&&h<d;h++)if(g[h]!==e[h])return r(g[h],e[h]);return h===c?r(a,e[h],-1):r(g[h],b,1)};[0,0].sort(Ma);ib=!F;f.Nc=function(a){var b,c=[],d=1,g=0;F=ib;a.sort(Ma);if(F){for(;b=a[d];d++)b===a[d-1]&&(g=c.push(d));
+for(;g--;)a.splice(c[g],1)}return a};f.error=function(a){throw Error("Syntax error, unrecognized expression: "+a);};La=f.compile=function(a,b){var c,d=[],g=[],e=R[I][a+" "];if(!e){b||(b=n(a));for(c=b.length;c--;)e=N(b[c]),e[I]?d.push(e):g.push(e);e=R(a,A(g,d))}return e};V.querySelectorAll&&function(){var a,b=C,c=/'|\\/g,g=/\=[\x20\t\r\n\f]*([^'"\]]*)[\x20\t\r\n\f]*\]/g,e=[":focus"],h=[":active"],l=D.matchesSelector||D.mozMatchesSelector||D.webkitMatchesSelector||D.gg||D.msMatchesSelector;d(function(a){a.innerHTML=
+"<select><option selected=''></option></select>";a.querySelectorAll("[selected]").length||e.push("\\[[\\x20\\t\\r\\n\\f]*(?:checked|disabled|ismap|multiple|readonly|selected|value)");a.querySelectorAll(":checked").length||e.push(":checked")});d(function(a){a.innerHTML="<p test=''></p>";a.querySelectorAll("[test^='']").length&&e.push("[*^$]=[\\x20\\t\\r\\n\\f]*(?:\"\"|'')");a.innerHTML="<input type='hidden'/>";a.querySelectorAll(":enabled").length||e.push(":enabled",":disabled")});e=RegExp(e.join("|"));
+C=function(a,d,g,h,l){if(!h&&!l&&!e.test(a)){var f,k,s=!0,m=I;k=d;f=9===d.nodeType&&a;if(1===d.nodeType&&"object"!==d.nodeName.toLowerCase()){f=n(a);(s=d.getAttribute("id"))?m=s.replace(c,"\\$&"):d.setAttribute("id",m);m="[id='"+m+"'] ";for(k=f.length;k--;)f[k]=m+f[k].join("");k=U.test(a)&&d.parentNode||d;f=f.join(",")}if(f)try{return E.apply(g,ha.call(k.querySelectorAll(f),0)),g}catch(p){}finally{s||d.removeAttribute("id")}}return b(a,d,g,h,l)};l&&(d(function(b){a=l.call(b,"div");try{l.call(b,"[test!='']:sizzle"),
+h.push("!=",S)}catch(c){}}),h=RegExp(h.join("|")),f.matchesSelector=function(b,c){c=c.replace(g,"='$1']");if(!G(b)&&!h.test(c)&&!e.test(c))try{var d=l.call(b,c);if(d||a||b.document&&11!==b.document.nodeType)return d}catch(k){}return 0<f(c,null,null,[b]).length})}();v.ga.fg=v.ga.va;v.filters=y.prototype=v.ga;v.Ec=new y;f.J=b.J;b.find=f;b.r=f.le;b.r[":"]=b.r.ga;b.unique=f.Nc;b.text=f.zd;b.Na=f.Hd;b.contains=f.contains})(u);var $b=/Until$/,ac=/^(?:parents|prev(?:Until|All))/,Bb=/^.[^:#\[\.,]*$/,jb=b.r.match.Qa,
+bc={children:!0,qa:!0,next:!0,be:!0};b.c.extend({find:function(a){var c,d,g,e,f,l,k=this;if("string"!=typeof a)return b(a).filter(function(){c=0;for(d=k.length;c<d;c++)if(b.contains(k[c],this))return!0});l=this.t("","find",a);c=0;for(d=this.length;c<d;c++)if(g=l.length,b.find(a,this[c],l),0<c)for(e=g;e<l.length;e++)for(f=0;f<g;f++)if(l[f]===l[e]){l.splice(e--,1);break}return l},s:function(a){var c,d=b(a,this),g=d.length;return this.filter(function(){for(c=0;c<g;c++)if(b.contains(this,d[c]))return!0})},
+Sd:function(a){return this.t(ta(this,a,!1),"not",a)},filter:function(a){return this.t(ta(this,a,!0),"filter",a)},ic:function(a){return!!a&&("string"==typeof a?jb.test(a)?0<=b(a,this.v).index(this[0]):0<b.filter(a,this).length:0<this.filter(a).length)},Xe:function(a,c){for(var d,g=0,e=this.length,f=[],l=jb.test(a)||"string"!=typeof a?b(a,c||this.v):0;g<e;g++)for(d=this[g];d&&d.ownerDocument&&d!==c&&11!==d.nodeType;){if(l?-1<l.index(d):b.find.matchesSelector(d,a)){f.push(d);break}d=d.parentNode}return f=
+1<f.length?b.unique(f):f,this.t(f,"closest",a)},index:function(a){return a?"string"==typeof a?b.N(this[0],b(a)):b.N(a.Pa?a[0]:a,this):this[0]&&this[0].parentNode?this.ce().length:-1},add:function(a,c){var d="string"==typeof a?b(a,c):b.fa(a&&a.nodeType?[a]:a),g=b.C(this.get(),d);return this.t(E(d[0])||E(g[0])?g:b.unique(g))},Vc:function(a){return this.add(null==a?this.Cb:this.Cb.filter(a))}});b.c.Je=b.c.Vc;b.a({parent:function(a){return(a=a.parentNode)&&11!==a.nodeType?a:null},mg:function(a){return b.dir(a,
+"parentNode")},ng:function(a,c,d){return b.dir(a,"parentNode",d)},next:function(a){return A(a,"nextSibling")},be:function(a){return A(a,"previousSibling")},cg:function(a){return b.dir(a,"nextSibling")},ce:function(a){return b.dir(a,"previousSibling")},dg:function(a,c,d){return b.dir(a,"nextSibling",d)},sg:function(a,c,d){return b.dir(a,"previousSibling",d)},Fg:function(a){return b.Gc((a.parentNode||{}).firstChild,a)},children:function(a){return b.Gc(a.firstChild)},qa:function(a){return b.nodeName(a,
+"iframe")?a.contentDocument||a.contentWindow.document:b.C([],a.childNodes)}},function(a,c){b.c[a]=function(d,g){var e=b.map(this,c,d);return $b.test(a)||(g=d),g&&"string"==typeof g&&(e=b.filter(g,e)),e=1<this.length&&!bc[a]?b.unique(e):e,1<this.length&&ac.test(a)&&(e=e.reverse()),this.t(e,a,R.call(arguments).join(","))}});b.extend({filter:function(a,c,d){return d&&(a=":not("+a+")"),1===c.length?b.find.matchesSelector(c[0],a)?[c[0]]:[]:b.find.matches(a,c)},dir:function(a,c,d){var g=[];for(a=a[c];a&&
+9!==a.nodeType&&(d===n||1!==a.nodeType||!b(a).ic(d));)1===a.nodeType&&g.push(a),a=a[c];return g},Gc:function(a,b){for(var d=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&d.push(a);return d}});var Ua="abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video",cc=/ jQuery\d+="(?:null|\d+)"/g,Na=/^\s+/,kb=/<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,lb=/<([\w:]+)/,dc=/<tbody/i,
+ec=/<|&#?\w+;/,fc=/<(?:script|style|link)/i,gc=/<(?:script|object|embed|option|style)/i,Oa=RegExp("<(?:"+Ua+")[\\s/>]","i"),Va=/^(?:checkbox|radio)$/,mb=/checked\s*(?:[^=]|=\s*.checked.)/i,hc=/\/(java|ecma)script/i,ic=/^\s*<!(?:\[CDATA\[|\-\-)|[\]\-]{2}>\s*$/g,K={uc:[1,"<select multiple='multiple'>","</select>"],Vf:[1,"<fieldset>","</fieldset>"],se:[1,"<table>","</table>"],Wg:[2,"<table><tbody>","</tbody></table>"],qe:[3,"<table><tbody><tr>","</tr></tbody></table>"],Ye:[2,"<table><tbody></tbody><colgroup>",
+"</colgroup></table>"],Ne:[1,"<map>","</map>"],F:[0,"",""]},nb=F(t),Pa=nb.appendChild(t.createElement("div"));K.jg=K.uc;K.Lc=K.Sg=K.Ze=K.caption=K.se;K.Tg=K.qe;b.d.fc||(K.F=[1,"X<div>","</div>"]);b.c.extend({text:function(a){return b.G(this,function(a){return a===n?b.text(this):this.empty().append((this[0]&&this[0].ownerDocument||t).createTextNode(a))},null,a,arguments.length)},Ib:function(a){if(b.b(a))return this.a(function(c){b(this).Ib(a.call(this,c))});if(this[0]){var c=b(a,this[0].ownerDocument).va(0).V(!0);
+this[0].parentNode&&c.insertBefore(this[0]);c.map(function(){for(var a=this;a.firstChild&&1===a.firstChild.nodeType;)a=a.firstChild;return a}).append(this)}return this},De:function(a){return b.b(a)?this.a(function(c){b(this).De(a.call(this,c))}):this.a(function(){var c=b(this),d=c.qa();d.length?d.Ib(a):c.append(a)})},Ce:function(a){var c=b.b(a);return this.a(function(d){b(this).Ib(c?a.call(this,d):a)})},dh:function(){return this.parent().a(function(){b.nodeName(this,"body")||b(this).Cc(this.childNodes)}).end()},
+append:function(){return this.da(arguments,!0,function(a){1!==this.nodeType&&11!==this.nodeType||this.appendChild(a)})},qg:function(){return this.da(arguments,!0,function(a){1!==this.nodeType&&11!==this.nodeType||this.insertBefore(a,this.firstChild)})},cd:function(){if(!E(this[0]))return this.da(arguments,!1,function(a){this.parentNode.insertBefore(a,this)});if(arguments.length){var a=b.jb(arguments);return this.t(b.C(a,this),"before",this.i)}},Xc:function(){if(!E(this[0]))return this.da(arguments,
+!1,function(a){this.parentNode.insertBefore(a,this.nextSibling)});if(arguments.length){var a=b.jb(arguments);return this.t(b.C(this,a),"after",this.i)}},remove:function(a,c){for(var d,g=0;null!=(d=this[g]);g++)if(!a||b.filter(a,[d]).length)!c&&1===d.nodeType&&(b.oa(d.getElementsByTagName("*")),b.oa([d])),d.parentNode&&d.parentNode.removeChild(d);return this},empty:function(){for(var a,c=0;null!=(a=this[c]);c++)for(1===a.nodeType&&b.oa(a.getElementsByTagName("*"));a.firstChild;)a.removeChild(a.firstChild);
+return this},V:function(a,c){return a=null==a?!1:a,c=null==c?a:c,this.map(function(){return b.V(this,a,c)})},za:function(a){return b.G(this,function(a){var d=this[0]||{},g=0,e=this.length;if(a===n)return 1===d.nodeType?d.innerHTML.replace(cc,""):n;if("string"==typeof a&&!(fc.test(a)||!b.d.fc&&Oa.test(a)||!b.d.oc&&Na.test(a)||K[(lb.exec(a)||["",""])[1].toLowerCase()])){a=a.replace(kb,"<$1></$2>");try{for(;g<e;g++)d=this[g]||{},1===d.nodeType&&(b.oa(d.getElementsByTagName("*")),d.innerHTML=a);d=0}catch(f){}}d&&
+this.empty().append(a)},null,a,arguments.length)},Cc:function(a){return E(this[0])?this.length?this.t(b(b.b(a)?a():a),"replaceWith",a):this:b.b(a)?this.a(function(c){var d=b(this),g=d.za();d.Cc(a.call(this,c,g))}):("string"!=typeof a&&(a=b(a).detach()),this.a(function(){var c=this.nextSibling,d=this.parentNode;b(this).remove();c?b(c).cd(a):b(d).append(a)}))},detach:function(a){return this.remove(a,!0)},da:function(a,c,d){a=[].concat.apply([],a);var g,e,f,l=0,k=a[0],m=[],r=this.length;if(!b.d.Tb&&
+1<r&&"string"==typeof k&&mb.test(k))return this.a(function(){b(this).da(a,c,d)});if(b.b(k))return this.a(function(g){var e=b(this);a[0]=k.call(this,g,c?e.za():n);e.da(a,c,d)});if(this[0]){g=b.Rb(a,this,m);f=g.tb;e=f.firstChild;1===f.childNodes.length&&(f=e);if(e)for(c=c&&b.nodeName(e,"tr"),g=g.Sb||r-1;l<r;l++)d.call(c&&b.nodeName(this[l],"table")?Da(this[l]):this[l],l===g?f:b.V(f,!0,!0));f=e=null;m.length&&b.a(m,function(a,c){c.src?b.aa?b.aa({url:c.src,type:"GET",dataType:"script",async:!1,global:!1,
+"throws":!0}):b.error("no ajax"):b.bc((c.text||c.textContent||c.innerHTML||"").replace(ic,""));c.parentNode&&c.parentNode.removeChild(c)})}return this}});b.Rb=function(a,c,d){var g,e,f,l=a[0];return c=c||t,c=!c.nodeType&&c[0]||c,c=c.ownerDocument||c,1===a.length&&"string"==typeof l&&512>l.length&&c===t&&"<"===l.charAt(0)&&!gc.test(l)&&(b.d.Tb||!mb.test(l))&&(b.d.vb||!Oa.test(l))&&(e=!0,g=b.$b[l],f=g!==n),g||(g=c.createDocumentFragment(),b.jb(a,c,g,d),e&&(b.$b[l]=f&&g)),{tb:g,Sb:e}};b.$b={};b.a({ad:"append",
+rg:"prepend",insertBefore:"before",Jf:"after",yg:"replaceWith"},function(a,c){b.c[a]=function(d){var g,e=0,f=[];d=b(d);var l=d.length;g=1===this.length&&this[0].parentNode;if((null==g||g&&11===g.nodeType&&1===g.childNodes.length)&&1===l)return d[c](this[0]),this;for(;e<l;e++)g=(0<e?this.V(!0):this).get(),b(d[e])[c](g),f=f.concat(g);return this.t(f,a,d.i)}});b.extend({V:function(a,c,d){var g,e,f,l;b.d.vb||b.Na(a)||!Oa.test("<"+a.nodeName+">")?l=a.cloneNode(!0):(Pa.innerHTML=a.outerHTML,Pa.removeChild(l=
+Pa.firstChild));if(!(b.d.qc&&b.d.Qd||1!==a.nodeType&&11!==a.nodeType||b.Na(a)))for(la(a,l),g=Q(a),e=Q(l),f=0;g[f];++f)e[f]&&la(g[f],e[f]);if(c&&(ka(a,l),d))for(g=Q(a),e=Q(l),f=0;g[f];++f)ka(g[f],e[f]);return l},jb:function(a,c,d,e){var h,f,l,k,m,r,n,p=c===t&&nb,q=[];c&&"undefined"!=typeof c.createDocumentFragment||(c=t);for(h=0;null!=(l=a[h]);h++)if("number"==typeof l&&(l+=""),l){if("string"==typeof l)if(ec.test(l)){p=p||F(c);r=c.createElement("div");p.appendChild(r);l=l.replace(kb,"<$1></$2>");f=
+(lb.exec(l)||["",""])[1].toLowerCase();k=K[f]||K.F;m=k[0];for(r.innerHTML=k[1]+l+k[2];m--;)r=r.lastChild;if(!b.d.Lc)for(m=dc.test(l),k="table"!==f||m?"<table>"!==k[1]||m?[]:r.childNodes:r.firstChild&&r.firstChild.childNodes,f=k.length-1;0<=f;--f)b.nodeName(k[f],"tbody")&&!k[f].childNodes.length&&k[f].parentNode.removeChild(k[f]);!b.d.oc&&Na.test(l)&&r.insertBefore(c.createTextNode(Na.exec(l)[0]),r.firstChild);l=r.childNodes;r.parentNode.removeChild(r)}else l=c.createTextNode(l);l.nodeType?q.push(l):
+b.C(q,l)}r&&(l=r=p=null);if(!b.d.$c)for(h=0;null!=(l=q[h]);h++)b.nodeName(l,"input")?ma(l):"undefined"!=typeof l.getElementsByTagName&&b.W(l.getElementsByTagName("input"),ma);if(d)for(a=function(a){if(!a.type||hc.test(a.type))return e?e.push(a.parentNode?a.parentNode.removeChild(a):a):d.appendChild(a)},h=0;null!=(l=q[h]);h++)b.nodeName(l,"script")&&a(l)||(d.appendChild(l),"undefined"!=typeof l.getElementsByTagName&&(n=b.W(b.C([],l.getElementsByTagName("script")),a),q.splice.apply(q,[h+1,0].concat(n)),
+h+=n.length));return q},oa:function(a,c){for(var d,e,h,f,l=0,k=b.expando,m=b.K,r=b.d.nb,q=b.event.u;null!=(h=a[l]);l++)if(c||b.na(h))if(d=(e=h[k])&&m[e]){if(d.L)for(f in d.L)q[f]?b.event.remove(h,f):b.Bc(h,f,d.handle);m[e]&&(delete m[e],r?delete h[k]:h.removeAttribute?h.removeAttribute(k):h[k]=null,b.Xb.push(e))}}});(function(){var a,c;b.ye=function(a){a=a.toLowerCase();a=/(chrome)[ \/]([\w.]+)/.exec(a)||/(webkit)[ \/]([\w.]+)/.exec(a)||/(opera)(?:.*version|)[ \/]([\w.]+)/.exec(a)||/(msie) ([\w.]+)/.exec(a)||
+0>a.indexOf("compatible")&&/(mozilla)(?:.*? rv:([\w.]+)|)/.exec(a)||[];return{hb:a[1]||"",version:a[2]||"0"}};a=b.ye(Fb.userAgent);c={};a.hb&&(c[a.hb]=!0,c.version=a.version);c.chrome?c.Be=!0:c.Be&&(c.Cg=!0);b.hb=c;b.sub=function(){function a(b,c){return new a.c.B(b,c)}b.extend(!0,a,this);a.Mg=this;a.c=a.prototype=this();a.c.constructor=a;a.sub=this.sub;a.c.B=function(e,f){return f&&f instanceof b&&!(f instanceof a)&&(f=a(f)),b.c.B.call(this,e,f,c)};a.c.B.prototype=a.c;var c=a(t);return a}})();var B,
+ca,da,Qa=/alpha\([^)]*\)/i,jc=/opacity=([^)]*)/,kc=/^(top|right|bottom|left)$/,lc=/^(none|table(?!-c[ea]).+)/,ob=/^margin/,Cb=RegExp("^("+za+")(.*)$","i"),va=RegExp("^("+za+")(?!px)[a-z%]+$","i"),mc=RegExp("^([-+])=("+za+")","i"),Ea={Fe:"block"},nc={position:"absolute",visibility:"hidden",display:"block"},pb={letterSpacing:0,fontWeight:400},Y=["Top","Right","Bottom","Left"],Wa=["Webkit","O","Moz","ms"],oc=b.c.toggle;b.c.extend({g:function(a,c){return b.G(this,function(a,c,e){return e!==n?b.style(a,
+c,e):b.g(a,c)},a,c,1<arguments.length)},show:function(){return oa(this,!0)},ec:function(){return oa(this)},toggle:function(a,c){var d="boolean"==typeof a;return b.b(a)&&b.b(c)?oc.apply(this,arguments):this.a(function(){(d?a:W(this))?b(this).show():b(this).ec()})}});b.extend({q:{opacity:{get:function(a,b){if(b){var d=B(a,"opacity");return""===d?"1":d}}}},kb:{pf:!0,fontWeight:!0,lineHeight:!0,opacity:!0,orphans:!0,widows:!0,zIndex:!0,zoom:!0},sa:{"float":b.d.cssFloat?"cssFloat":"styleFloat"},style:function(a,
+c,d,e){if(a&&3!==a.nodeType&&8!==a.nodeType&&a.style){var h,f,l,k=b.U(c),m=a.style;c=b.sa[k]||(b.sa[k]=na(m,k));l=b.q[c]||b.q[k];if(d===n)return l&&"get"in l&&(h=l.get(a,!1,e))!==n?h:m[c];f=typeof d;"string"===f&&(h=mc.exec(d))&&(d=(h[1]+1)*h[2]+parseFloat(b.g(a,c)),f="number");if(!(null==d||"number"===f&&isNaN(d)||("number"===f&&!b.kb[k]&&(d+="px"),l&&"set"in l&&(d=l.set(a,d,e))===n)))try{m[c]=d}catch(r){}}},g:function(a,c,d,e){var h,f,l,k=b.U(c);return c=b.sa[k]||(b.sa[k]=na(a.style,k)),l=b.q[c]||
+b.q[k],l&&"get"in l&&(h=l.get(a,!0,e)),h===n&&(h=B(a,c)),"normal"===h&&c in pb&&(h=pb[c]),d||e!==n?(f=parseFloat(h),d||b.lc(f)?f||0:h):h},Kc:function(a,b,d){var e,h={};for(e in b)h[e]=a.style[e],a.style[e]=b[e];d=d.call(a);for(e in b)a.style[e]=h[e];return d}});u.getComputedStyle?B=function(a,c){var d,e,h,f,l=u.getComputedStyle(a,null),k=a.style;return l&&(d=l.getPropertyValue(c)||l[c],""===d&&!b.contains(a.ownerDocument,a)&&(d=b.style(a,c)),va.test(d)&&ob.test(c)&&(e=k.width,h=k.minWidth,f=k.maxWidth,
+k.minWidth=k.maxWidth=k.width=d,d=l.width,k.width=e,k.minWidth=h,k.maxWidth=f)),d}:t.documentElement.currentStyle&&(B=function(a,b){var d,e,h=a.currentStyle&&a.currentStyle[b],f=a.style;return null==h&&f&&f[b]&&(h=f[b]),va.test(h)&&!kc.test(b)&&(d=f.left,e=a.runtimeStyle&&a.runtimeStyle.left,e&&(a.runtimeStyle.left=a.currentStyle.left),f.left="fontSize"===b?"1em":h,h=f.pixelLeft+"px",f.left=d,e&&(a.runtimeStyle.left=e)),""===h?"auto":h});b.a(["height","width"],function(a,c){b.q[c]={get:function(a,
+e,h){if(e)return 0===a.offsetWidth&&lc.test(B(a,"display"))?b.Kc(a,nc,function(){return ua(a,c,h)}):ua(a,c,h)},set:function(a,e,h){return X(0,e,h?pa(a,c,h,b.d.boxSizing&&"border-box"===b.g(a,"boxSizing")):0)}}});b.d.opacity||(b.q.opacity={get:function(a,b){return jc.test((b&&a.currentStyle?a.currentStyle.filter:a.style.filter)||"")?0.01*parseFloat(RegExp.$1)+"":b?"1":""},set:function(a,c){var d=a.style,e=a.currentStyle,h=b.lc(c)?"alpha(opacity="+100*c+")":"",f=e&&e.filter||d.filter||"";d.zoom=1;if(1<=
+c&&""===b.trim(f.replace(Qa,""))&&d.removeAttribute&&(d.removeAttribute("filter"),e&&!e.filter))return;d.filter=Qa.test(f)?f.replace(Qa,h):f+" "+h}});b(function(){b.d.Ac||(b.q.marginRight={get:function(a,c){return b.Kc(a,{display:"inline-block"},function(){if(c)return B(a,"marginRight")})}});!b.d.xc&&b.c.position&&b.a(["top","left"],function(a,c){b.q[c]={get:function(a,e){if(e){var h=B(a,c);return va.test(h)?b(a).position()[c]+"px":h}}}})});b.r&&b.r.filters&&(b.r.filters.hidden=function(a){return 0===
+a.offsetWidth&&0===a.offsetHeight||!b.d.ge&&"none"===(a.style&&a.style.display||B(a,"display"))},b.r.filters.visible=function(a){return!b.r.filters.hidden(a)});b.a({margin:"",padding:"",border:"Width"},function(a,c){b.q[a+c]={expand:function(b){var e="string"==typeof b?b.split(" "):[b],h={};for(b=0;4>b;b++)h[a+Y[b]+c]=e[b]||e[b-2]||e[0];return h}};ob.test(a)||(b.q[a+c].set=X)});var pc=/%20/g,Db=/\[\]$/,qb=/\r?\n/g,qc=/^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i,
+rc=/^(?:select|textarea)/i;b.c.extend({Dg:function(){return b.vc(this.me())},me:function(){return this.map(function(){return this.elements?b.fa(this.elements):this}).filter(function(){return this.name&&!this.disabled&&(this.checked||rc.test(this.nodeName)||qc.test(this.type))}).map(function(a,c){var d=b(this).Fa();return null==d?null:b.isArray(d)?b.map(d,function(a){return{name:c.name,value:a.replace(qb,"\r\n")}}):{name:c.name,value:d.replace(qb,"\r\n")}}).get()}});b.vc=function(a,c){function d(a,
+c){c=b.b(c)?c():null==c?"":c;h[h.length]=encodeURIComponent(a)+"="+encodeURIComponent(c)}var e,h=[];c===n&&(c=b.R&&b.R.xe);if(b.isArray(a)||a.Pa&&!b.La(a))b.a(a,function(){d(this.name,this.value)});else for(e in a)y(e,a[e],c,d);return h.join("&").replace(pc,"+")};var U,aa,sc=/#.*$/,tc=/^(.*?):[ \t]*([^\r\n]*)\r?$/mg,uc=/^(?:GET|HEAD)$/,vc=/^\/\//,rb=/\?/,wc=/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,xc=/([?&])_=[^&]*/,sb=/^([\w\+\.\-]+:)(?:\/\/([^\/?#:]*)(?::(\d+)|)|)/,tb=b.c.load,Fa={},
+ub={},vb=["*/"]+["*"];try{aa=Eb.href}catch(Gc){aa=t.createElement("a"),aa.href="",aa=aa.href}U=sb.exec(aa.toLowerCase())||[];b.c.load=function(a,c,d){if("string"!=typeof a&&tb)return tb.apply(this,arguments);if(!this.length)return this;var e,h,f,l=this,k=a.indexOf(" ");return 0<=k&&(e=a.slice(k,a.length),a=a.slice(0,k)),b.b(c)?(d=c,c=n):c&&"object"==typeof c&&(h="POST"),b.aa({url:a,type:h,dataType:"html",data:c,complete:function(a,b){d&&l.a(d,f||[a.responseText,b,a])}}).A(function(a){f=arguments;
+l.za(e?b("<div>").append(a.replace(wc,"")).find(e):a)}),this};b.a("ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".split(" "),function(a,c){b.c[c]=function(a){return this.Y(c,a)}});b.a(["get","post"],function(a,c){b[c]=function(a,e,h,f){return b.b(e)&&(f=f||h,h=e,e=n),b.aa({type:c,url:a,data:e,Jc:h,dataType:f})}});b.extend({yf:function(a,c){return b.get(a,n,c,"script")},wf:function(a,c,d){return b.get(a,c,d,"json")},eb:function(a,c){return c?ea(a,b.R):(c=a,a=b.R),ea(a,c),a},R:{url:aa,
+kc:/^(?:about|app|app\-storage|.+\-extension|file|res|widget):$/.test(U[1]),global:!0,type:"GET",contentType:"application/x-www-form-urlencoded; charset=UTF-8",de:!0,async:!0,Ga:{xml:"application/xml, text/xml",za:"text/html",text:"text/plain",Id:"application/json, text/javascript","*":vb},qa:{xml:/xml/,za:/html/,Id:/json/},ie:{xml:"responseXML",text:"responseText"},ra:{"* text":u.He,"text html":!0,"text json":b.wc,"text xml":b.Yd},vd:{v:!0,url:!0}},Ob:qa(Fa),Pb:qa(ub),aa:function(a,c){function d(a,
+c,d,f){var m,s,q,w,M,D=c;if(2!==z){z=2;k&&clearTimeout(k);l=n;h=f||"";v.readyState=0<a?4:0;if(d){w=p;f=v;var y,x,B,F,G=w.qa,E=w.w,K=w.ie;for(x in K)x in d&&(f[K[x]]=d[x]);for(;"*"===E[0];)E.shift(),y===n&&(y=w.Ab||f.getResponseHeader("content-type"));if(y)for(x in G)if(G[x]&&G[x].test(y)){E.unshift(x);break}if(E[0]in d)B=E[0];else{for(x in d){if(!E[0]||w.ra[x+" "+E[0]]){B=x;break}F||(F=x)}B=B||F}w=B?(B!==E[0]&&E.unshift(B),d[B]):void 0}if(200<=a&&300>a||304===a)if(p.Cd&&(M=v.getResponseHeader("Last-Modified"),
+M&&(b.lastModified[e]=M),M=v.getResponseHeader("Etag"),M&&(b.pb[e]=M)),304===a)D="notmodified",m=!0;else{var J;a:{d=p;m=w;var L;M=d.w.slice();D=M[0];y={};x=0;d.od&&(m=d.od(m,d.dataType));if(M[1])for(J in d.ra)y[J.toLowerCase()]=d.ra[J];for(;s=M[++x];)if("*"!==s){if("*"!==D&&D!==s){J=y[D+" "+s]||y["* "+s];if(!J)for(L in y)if(q=L.split(" "),q[1]===s&&(J=y[D+" "+q[0]]||y["* "+q[0]])){!0===J?J=y[L]:!0!==y[L]&&(s=q[0],M.splice(x--,0,s));break}if(!0!==J)if(J&&d["throws"])m=J(m);else try{m=J(m)}catch(O){J=
+{state:"parsererror",error:J?O:"No conversion from "+D+" to "+s};break a}}D=s}J={state:"success",data:m}}m=J;D=m.state;s=m.data;q=m.error;m=!q}else if(q=D,!D||a)D="error",0>a&&(a=0);v.status=a;v.statusText=(c||D)+"";m?N.ja(t,[s,D,v]):N.fe(t,[v,D,q]);v.Ic(A);A=n;r&&u.n("ajax"+(m?"Success":"Error"),[v,p,m?s:q]);C.qb(t,[v,D]);r&&(u.n("ajaxComplete",[v,p]),--b.cb||b.event.n("ajaxStop"))}}"object"==typeof a&&(c=a,a=n);c=c||{};var e,h,f,l,k,m,r,q,p=b.eb({},c),t=p.v||p,u=t!==p&&(t.nodeType||t instanceof
+b)?b(t):b.event,N=b.Z(),C=b.la("once memory"),A=p.Ic||{},y={},x={},z=0,B="canceled",v={readyState:0,setRequestHeader:function(a,b){if(!z){var c=a.toLowerCase();a=x[c]=x[c]||a;y[a]=b}return this},getAllResponseHeaders:function(){return 2===z?h:null},getResponseHeader:function(a){var b;if(2===z){if(!f)for(f={};b=tc.exec(h);)f[b[1].toLowerCase()]=b[2];b=f[a.toLowerCase()]}return b===n?null:b},overrideMimeType:function(a){return z||(p.Ab=a),this},abort:function(a){return a=a||B,l&&l.abort(a),d(0,a),this}};
+N.m(v);v.Jc=v.A;v.error=v.wa;v.complete=C.add;v.Ic=function(a){if(a){var b;if(2>z)for(b in a)A[b]=[A[b],a[b]];else b=a[v.status],v.S(b)}return this};p.url=((a||p.url)+"").replace(sc,"").replace(vc,U[1]+"//");p.w=b.trim(p.dataType||"*").toLowerCase().split(S);null==p.ba&&(m=sb.exec(p.url.toLowerCase()),p.ba=!(!m||m[1]===U[1]&&m[2]===U[2]&&(m[3]||("http:"===m[1]?80:443))==(U[3]||("http:"===U[1]?80:443))));p.data&&p.de&&"string"!=typeof p.data&&(p.data=b.vc(p.data,p.xe));Z(Fa,p,c,v);if(2===z)return v;
+r=p.global;p.type=p.type.toUpperCase();p.ub=!uc.test(p.type);r&&0===b.cb++&&b.event.n("ajaxStart");if(!p.ub&&(p.data&&(p.url+=(rb.test(p.url)?"&":"?")+p.data,delete p.data),e=p.url,!1===p.K)){m=b.now();var F=p.url.replace(xc,"$1_="+m);p.url=F+(F===p.url?(rb.test(p.url)?"&":"?")+"_="+m:"")}(p.data&&p.ub&&!1!==p.contentType||c.contentType)&&v.setRequestHeader("Content-Type",p.contentType);p.Cd&&(e=e||p.url,b.lastModified[e]&&v.setRequestHeader("If-Modified-Since",b.lastModified[e]),b.pb[e]&&v.setRequestHeader("If-None-Match",
+b.pb[e]));v.setRequestHeader("Accept",p.w[0]&&p.Ga[p.w[0]]?p.Ga[p.w[0]]+("*"!==p.w[0]?", "+vb+"; q=0.01":""):p.Ga["*"]);for(q in p.headers)v.setRequestHeader(q,p.headers[q]);if(!p.dd||!1!==p.dd.call(t,v,p)&&2!==z){B="abort";for(q in{Jc:1,error:1,complete:1})v[q](p[q]);if(l=Z(ub,p,c,v)){v.readyState=1;r&&u.n("ajaxSend",[v,p]);p.async&&0<p.timeout&&(k=setTimeout(function(){v.abort("timeout")},p.timeout));try{z=1,l.send(y,d)}catch(G){if(!(2>z))throw G;d(-1,G)}}else d(-1,"No Transport");return v}return v.abort()},
+cb:0,lastModified:{},pb:{}});var wb=[],yc=/\?/,Ba=/(=)\?(?=&|$)|\?\?/,zc=b.now();b.eb({nc:"callback",ea:function(){var a=wb.pop()||b.expando+"_"+zc++;return this[a]=!0,a}});b.Ob("json jsonp",function(a,c,d){var e,h,f,l=a.data,k=a.url,m=!1!==a.nc,r=m&&Ba.test(k),q=m&&!r&&"string"==typeof l&&!(a.contentType||"").indexOf("application/x-www-form-urlencoded")&&Ba.test(l);if("jsonp"===a.w[0]||r||q)return e=a.ea=b.b(a.ea)?a.ea():a.ea,h=u[e],r?a.url=k.replace(Ba,"$1"+e):q?a.data=l.replace(Ba,"$1"+e):m&&(a.url+=
+(yc.test(k)?"&":"?")+a.nc+"="+e),a.ra["script json"]=function(){return f||b.error(e+" was not called"),f[0]},a.w[0]="json",u[e]=function(){f=arguments},d.S(function(){u[e]=h;a[e]&&(a.ea=c.ea,wb.push(e));f&&b.b(h)&&h(f[0]);f=h=n}),"script"});b.eb({Ga:{je:"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"},qa:{je:/javascript|ecmascript/},ra:{"text script":function(a){return b.bc(a),a}}});b.Ob("script",function(a){a.K===n&&(a.K=!1);a.ba&&(a.type="GET",a.global=
+!1)});b.Pb("script",function(a){if(a.ba){var b,d=t.head||t.getElementsByTagName("head")[0]||t.documentElement;return{send:function(e,h){b=t.createElement("script");b.async="async";a.ke&&(b.charset=a.ke);b.src=a.url;b.onload=b.onreadystatechange=function(a,e){if(e||!b.readyState||/loaded|complete/.test(b.readyState))b.onload=b.onreadystatechange=null,d&&b.parentNode&&d.removeChild(b),b=n,e||h(200,"success")};d.insertBefore(b,d.firstChild)},abort:function(){b&&b.onload(0,1)}}}});var ia,Ra=u.ActiveXObject?
+function(){for(var a in ia)ia[a](0,1)}:!1,Ac=0;b.R.Qc=u.ActiveXObject?function(){var a;if(!(a=!this.kc&&e()))a:{try{a=new u.ActiveXObject("Microsoft.XMLHTTP");break a}catch(b){}a=void 0}return a}:e;(function(a){b.extend(b.d,{aa:!!a,md:!!a&&"withCredentials"in a})})(b.R.Qc());b.d.aa&&b.Pb(function(a){if(!a.ba||b.d.md){var c;return{send:function(d,e){var h,f,l=a.Qc();a.ze?l.open(a.type,a.url,a.async,a.ze,a.Zd):l.open(a.type,a.url,a.async);if(a.Rc)for(f in a.Rc)l[f]=a.Rc[f];a.Ab&&l.overrideMimeType&&
+l.overrideMimeType(a.Ab);a.ba||d["X-Requested-With"]||(d["X-Requested-With"]="XMLHttpRequest");try{for(f in d)l.setRequestHeader(f,d[f])}catch(k){}l.send(a.ub&&a.data||null);c=function(d,f){var k,m,r,s,q;try{if(c&&(f||4===l.readyState))if(c=n,h&&(l.onreadystatechange=b.sc,Ra&&delete ia[h]),f)4!==l.readyState&&l.abort();else{k=l.status;r=l.getAllResponseHeaders();s={};(q=l.responseXML)&&q.documentElement&&(s.xml=q);try{s.text=l.responseText}catch(t){}try{m=l.statusText}catch(u){m=""}k||!a.kc||a.ba?
+1223===k&&(k=204):k=s.text?200:404}}catch(H){f||e(-1,H)}s&&e(k,m,s,r)};a.async?4===l.readyState?setTimeout(c,0):(h=++Ac,Ra&&(ia||(ia={},b(u).bh(Ra)),ia[h]=c),l.onreadystatechange=c):c()},abort:function(){c&&c(0,1)}}}});var fa,Ca,Bc=/^(?:toggle|show|hide)$/,Cc=RegExp("^(?:([-+])=|)("+za+")([a-z%]*)$","i"),Dc=/queueHooks$/,wa=[function(a,c,d){var e,h,f,k,m,r,q=this,n=a.style,p={},t=[],u=a.nodeType&&W(a);d.j||(m=b.bb(a,"fx"),null==m.Wa&&(m.Wa=0,r=m.empty.xa,m.empty.xa=function(){m.Wa||r()}),m.Wa++,q.S(function(){q.S(function(){m.Wa--;
+b.j(a,"fx").length||m.empty.xa()})}));1===a.nodeType&&("height"in c||"width"in c)&&(d.overflow=[n.overflow,n.overflowX,n.overflowY],"inline"===b.g(a,"display")&&"none"===b.g(a,"float")&&(b.d.hc&&"inline"!==T(a.nodeName)?n.zoom=1:n.display="inline-block"));d.overflow&&(n.overflow="hidden",b.d.Fc||q.A(function(){n.overflow=d.overflow[0];n.overflowX=d.overflow[1];n.overflowY=d.overflow[2]}));for(e in c)f=c[e],Bc.exec(f)&&(delete c[e],h=h||"toggle"===f,f!==(u?"hide":"show")&&t.push(e));if(c=t.length)for(f=
+b.e(a,"fxshow")||b.e(a,"fxshow",{}),("hidden"in f)&&(u=f.hidden),h&&(f.hidden=!u),u?b(a).show():q.A(function(){b(a).ec()}),q.A(function(){var c;b.ia(a,"fxshow",!0);for(c in p)b.style(a,c,p[c])}),e=0;e<c;e++)h=t[e],k=q.Ub(h,u?f[h]:0),p[h]=f[h]||b.style(a,h),h in f||(f[h]=k.start,u&&(k.end=k.start,k.start="width"===h||"height"===h?1:0))}],ra={"*":[function(a,c){var d,e,h=this.Ub(a,c),f=Cc.exec(c),k=h.lb(),m=+k||0,r=1,q=20;if(f){d=+f[2];e=f[3]||(b.kb[a]?"":"px");if("px"!==e&&m){m=b.g(h.f,a,!0)||d||1;
+do r=r||".5",m/=r,b.style(h.f,a,m+e);while(r!==(r=h.lb()/k)&&1!==r&&--q)}h.Oc=e;h.start=m;h.end=f[1]?m+(f[1]+1)*d:d}return h}]};b.Ee=b.extend(m,{Xg:function(a,c){b.b(a)?(c=a,a=["*"]):a=a.split(" ");for(var d,e=0,h=a.length;e<h;e++)d=a[e],ra[d]=ra[d]||[],ra[d].unshift(c)},pg:function(a,b){b?wa.unshift(a):wa.push(a)}});b.Uc=q;q.prototype={constructor:q,B:function(a,c,d,e,h,f){this.f=a;this.l=d;this.ua=h||"swing";this.options=c;this.start=this.now=this.lb();this.end=e;this.Oc=f||(b.kb[d]?"":"px")},lb:function(){var a=
+q.D[this.l];return a&&a.get?a.get(this):q.D.F.get(this)},Dc:function(a){var c,d=q.D[this.l];return this.options.duration?c=b.ua[this.ua](a,this.options.duration*a,0,1,this.options.duration):c=a,this.now=(this.end-this.start)*c+this.start,this.options.step&&this.options.step.call(this.f,this.now,this),d&&d.set?d.set(this):q.D.F.set(this),this}};q.prototype.B.prototype=q.prototype;q.D={F:{get:function(a){var c;return null==a.f[a.l]||a.f.style&&null!=a.f.style[a.l]?(c=b.g(a.f,a.l,!1,""),c&&"auto"!==
+c?c:0):a.f[a.l]},set:function(a){b.k.step[a.l]?b.k.step[a.l](a):a.f.style&&(null!=a.f.style[b.sa[a.l]]||b.q[a.l])?b.style(a.f,a.l,a.now+a.Oc):a.f[a.l]=a.now}}};q.D.scrollTop=q.D.scrollLeft={set:function(a){a.f.nodeType&&a.f.parentNode&&(a.f[a.l]=a.now)}};b.a(["toggle","show","hide"],function(a,c){var d=b.c[c];b.c[c]=function(e,h,f){return null==e||"boolean"==typeof e||!a&&b.b(e)&&b.b(h)?d.apply(this,arguments):this.fb(N(c,!0),e,h,f)}});b.c.extend({mf:function(a,b,d,e){return this.filter(W).g("opacity",
+0).show().end().fb({opacity:b},a,d,e)},fb:function(a,c,d,e){function h(){var c=m(this,b.extend({},a),k);f&&c.stop(!0)}var f=b.Ka(a),k=b.speed(c,d,e);return f||!1===k.j?this.a(h):this.j(k.j,h)},stop:function(a,c,d){function e(a){var b=a.stop;delete a.stop;b(d)}return"string"!=typeof a&&(d=c,c=a,a=n),c&&!1!==a&&this.j(a||"fx",[]),this.a(function(){var c=!0,f=null!=a&&a+"queueHooks",k=b.Va,m=b.e(this);if(f)m[f]&&m[f].stop&&e(m[f]);else for(f in m)m[f]&&m[f].stop&&Dc.test(f)&&e(m[f]);for(f=k.length;f--;)k[f].f!==
+this||null!=a&&k[f].j!==a||(k[f].Zc.stop(d),c=!1,k.splice(f,1));!c&&d||b.ca(this,a)})}});b.a({Gg:N("show"),Ig:N("hide"),Hg:N("toggle"),kf:{opacity:"show"},lf:{opacity:"hide"},nf:{opacity:"toggle"}},function(a,c){b.c[a]=function(a,b,e){return this.fb(c,a,b,e)}});b.speed=function(a,c,d){var e=a&&"object"==typeof a?b.extend({},a):{complete:d||!d&&c||b.b(a)&&a,duration:a,ua:d&&c||c&&!b.b(c)&&c};e.duration=b.k.I?0:"number"==typeof e.duration?e.duration:e.duration in b.k.Ua?b.k.Ua[e.duration]:b.k.Ua.F;
+if(null==e.j||!0===e.j)e.j="fx";return e.tc=e.complete,e.complete=function(){b.b(e.tc)&&e.tc.call(this);e.j&&b.ca(this,e.j)},e};b.ua={Wf:function(a){return a},Ng:function(a){return 0.5-Math.cos(a*Math.PI)/2}};b.Va=[];b.k=q.prototype.B;b.k.ue=function(){var a,c=b.Va,d=0;for(fa=b.now();d<c.length;d++)a=c[d],!a()&&c[d]===a&&c.splice(d--,1);c.length||b.k.stop();fa=n};b.k.ve=function(a){a()&&b.Va.push(a)&&!Ca&&(Ca=setInterval(b.k.ue,b.k.interval))};b.k.interval=13;b.k.stop=function(){clearInterval(Ca);
+Ca=null};b.k.Ua={Jg:600,of:200,F:400};b.k.step={};b.r&&b.r.filters&&(b.r.filters.Ke=function(a){return b.W(b.Va,function(b){return a===b.f}).length});var xb=/^(?:body|html)$/i;b.c.offset=function(a){if(arguments.length)return a===n?this:this.a(function(c){b.offset.ne(this,a,c)});var c,d,e,f,k,l,m,r={top:0,left:0},q=this[0],t=q&&q.ownerDocument;if(t)return(d=t.body)===q?b.offset.ed(q):(c=t.documentElement,b.contains(c,q)?("undefined"!=typeof q.getBoundingClientRect&&(r=q.getBoundingClientRect()),e=
+xa(t),f=c.clientTop||d.clientTop||0,k=c.clientLeft||d.clientLeft||0,l=e.pageYOffset||c.scrollTop,m=e.pageXOffset||c.scrollLeft,{top:r.top+l-f,left:r.left+m-k}):r)};b.offset={ed:function(a){var c=a.offsetTop,d=a.offsetLeft;return b.d.sd&&(c+=parseFloat(b.g(a,"marginTop"))||0,d+=parseFloat(b.g(a,"marginLeft"))||0),{top:c,left:d}},ne:function(a,c,d){var e=b.g(a,"position");"static"===e&&(a.style.position="relative");var f=b(a),k=f.offset(),l=b.g(a,"top"),m=b.g(a,"left"),r={},q={},n,p;("absolute"===e||
+"fixed"===e)&&-1<b.N("auto",[l,m])?(q=f.position(),n=q.top,p=q.left):(n=parseFloat(l)||0,p=parseFloat(m)||0);b.b(c)&&(c=c.call(a,d,k));null!=c.top&&(r.top=c.top-k.top+n);null!=c.left&&(r.left=c.left-k.left+p);"using"in c?c.gh.call(a,r):f.g(r)}};b.c.extend({position:function(){if(this[0]){var a=this[0],c=this.offsetParent(),d=this.offset(),e=xb.test(c[0].nodeName)?{top:0,left:0}:c.offset();return d.top-=parseFloat(b.g(a,"marginTop"))||0,d.left-=parseFloat(b.g(a,"marginLeft"))||0,e.top+=parseFloat(b.g(c[0],
+"borderTopWidth"))||0,e.left+=parseFloat(b.g(c[0],"borderLeftWidth"))||0,{top:d.top-e.top,left:d.left-e.left}}},offsetParent:function(){return this.map(function(){for(var a=this.offsetParent||t.body;a&&!xb.test(a.nodeName)&&"static"===b.g(a,"position");)a=a.offsetParent;return a||t.body})}});b.a({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(a,c){var d=/Y/.test(c);b.c[a]=function(e){return b.G(this,function(a,e,f){var g=xa(a);if(f===n)return g?c in g?g[c]:g.document.documentElement[e]:
+a[e];g?g.scrollTo(d?b(g).scrollLeft():f,d?f:b(g).scrollTop()):a[e]=f},a,e,arguments.length,null)}});b.a({Ge:"height",Ie:"width"},function(a,c){b.a({padding:"inner"+a,content:c,"":"outer"+a},function(d,e){b.c[e]=function(e,f){var g=arguments.length&&(d||"boolean"!=typeof e),k=d||(!0===e||!0===f?"margin":"border");return b.G(this,function(c,d,e){var f;return b.X(c)?c.document.documentElement["client"+a]:9===c.nodeType?(f=c.documentElement,Math.max(c.body["scroll"+a],f["scroll"+a],c.body["offset"+a],
+f["offset"+a],f["client"+a])):e===n?b.g(c,d,e,k):b.style(c,d,e,k)},c,g?e:n,g,null)}})});u.Oa=u.Xa=b;"function"==typeof define&&define.Yc&&define.Yc.Oa&&define("jquery",[],function(){return b})})(window);(function(){function u(e,f){x.prototype[e]=function(){var e=A.call(arguments);ta.call(e,this.$);return n(f.apply(b,e),this.ma)}}function n(e,f){return f?b(e).ib():e}function x(b){this.$=b}function C(b){return b.replace(/\\\\/g,"\\").replace(/\\'/g,"'")}function G(){}function b(b){return new x(b)}function P(e,f,k){if(e===f)return 0!==e||1/e==1/f;if(null==e||null==f)return e===f;e.ma&&(e=e.$);f.ma&&(f=f.$);if(e.isEqual&&b.b(e.isEqual))return e.isEqual(f);if(f.isEqual&&b.b(f.isEqual))return f.isEqual(e);
+var m=F.call(e);if(m!=F.call(f))return!1;switch(m){case "[object String]":return e==String(f);case "[object Number]":return e!=+e?f!=+f:0==e?1/e==1/f:e==+f;case "[object Date]":case "[object Boolean]":return+e==+f;case "[object RegExp]":return e.source==f.source&&e.global==f.global&&e.multiline==f.multiline&&e.ignoreCase==f.ignoreCase}if("object"!=typeof e||"object"!=typeof f)return!1;for(var r=k.length;r--;)if(k[r]==e)return!0;k.push(e);var r=0,q=!0;if("[object Array]"==m){if(r=e.length,q=r==f.length)for(;r--&&
+(q=r in e==r in f&&P(e[r],f[r],k)););}else{if("constructor"in e!="constructor"in f||e.constructor!=f.constructor)return!1;for(var n in e)if(b.s(e,n)&&(r++,!(q=b.s(f,n)&&P(e[n],f[n],k))))break;if(q){for(n in f)if(b.s(f,n)&&!r--)break;q=!r}}k.pop();return q}var ba=this,ja=ba.ab,L={},z=Array.prototype,E=Object.prototype,A=z.slice,ta=z.unshift,F=E.toString,Da=E.hasOwnProperty,ka=z.forEach,la=z.map,Q=z.reduce,ma=z.reduceRight,na=z.filter,W=z.every,oa=z.some,X=z.indexOf,pa=z.lastIndexOf,E=Array.isArray,
+ua=Object.keys,T=Function.prototype.bind;"undefined"!==typeof exports?("undefined"!==typeof module&&module.ud&&(exports=module.ud=b),exports.ab=b):ba.ab=b;b.VERSION="1.3.1";var y=b.a=b.forEach=function(e,f,k){if(null!=e)if(ka&&e.forEach===ka)e.forEach(f,k);else if(e.length===+e.length)for(var m=0,r=e.length;m<r&&!(m in e&&f.call(k,e[m],m,e)===L);m++);else for(m in e)if(b.s(e,m)&&f.call(k,e[m],m,e)===L)break};b.map=b.$e=function(b,f,k){var m=[];if(null==b)return m;if(la&&b.map===la)return b.map(f,
+k);y(b,function(b,e,n){m[m.length]=f.call(k,b,e,n)});b.length===+b.length&&(m.length=b.length);return m};b.reduce=b.tf=b.If=function(e,f,k,m){var r=2<arguments.length;null==e&&(e=[]);if(Q&&e.reduce===Q)return m&&(f=b.bind(f,m)),r?e.reduce(f,k):e.reduce(f);y(e,function(b,e,n){r?k=f.call(m,k,b,e,n):(k=b,r=!0)});if(!r)throw new TypeError("Reduce of empty array with no initial value");return k};b.reduceRight=b.uf=function(e,f,k,m){var r=2<arguments.length;null==e&&(e=[]);if(ma&&e.reduceRight===ma)return m&&
+(f=b.bind(f,m)),r?e.reduceRight(f,k):e.reduceRight(f);var q=b.ka(e).reverse();m&&!r&&(f=b.bind(f,m));return r?b.reduce(q,f,k,m):b.reduce(q,f)};b.find=b.ff=function(b,f,k){var m;qa(b,function(b,e,n){if(f.call(k,b,e,n))return m=b,!0});return m};b.filter=b.select=function(b,f,k){var m=[];if(null==b)return m;if(na&&b.filter===na)return b.filter(f,k);y(b,function(b,e,n){f.call(k,b,e,n)&&(m[m.length]=b)});return m};b.zc=function(b,f,k){var m=[];if(null==b)return m;y(b,function(b,e,n){f.call(k,b,e,n)||(m[m.length]=
+b)});return m};b.every=b.all=function(b,f,k){var m=!0;if(null==b)return m;if(W&&b.every===W)return b.every(f,k);y(b,function(b,e,n){if(!(m=m&&f.call(k,b,e,n)))return L});return m};var qa=b.some=b.Le=function(e,f,k){f||(f=b.Ia);var m=!1;if(null==e)return m;if(oa&&e.some===oa)return e.some(f,k);y(e,function(b,e,n){if(m||(m=f.call(k,b,e,n)))return L});return!!m};b.gc=b.contains=function(b,f){var k=!1;return null==b?k:X&&b.indexOf===X?-1!=b.indexOf(f):k=qa(b,function(b){return b===f})};b.Mf=function(e,
+f){var k=A.call(arguments,2);return b.map(e,function(e){return(b.b(f)?f||e:e[f]).apply(e,k)})};b.Bb=function(e,f){return b.map(e,function(b){return b[f]})};b.max=function(e,f,k){if(!f&&b.isArray(e))return Math.max.apply(Math,e);if(!f&&b.jc(e))return-Infinity;var m={pa:-Infinity};y(e,function(b,e,n){e=f?f.call(k,b,e,n):b;e>=m.pa&&(m={value:b,pa:e})});return m.value};b.min=function(e,f,k){if(!f&&b.isArray(e))return Math.min.apply(Math,e);if(!f&&b.jc(e))return Infinity;var m={pa:Infinity};y(e,function(b,
+e,n){e=f?f.call(k,b,e,n):b;e<m.pa&&(m={value:b,pa:e})});return m.value};b.Eg=function(b){var f=[],k;y(b,function(b,e){0==e?f[0]=b:(k=Math.floor(Math.random()*(e+1)),f[e]=f[k],f[k]=b)});return f};b.Kg=function(e,f,k){return b.Bb(b.map(e,function(b,e,n){return{value:b,Vb:f.call(k,b,e,n)}}).sort(function(b,e){var f=b.Vb,k=e.Vb;return f<k?-1:f>k?1:0}),"value")};b.zf=function(e,f){var k={},m=b.b(f)?f:function(b){return b[f]};y(e,function(b,e){var f=m(b,e);(k[f]||(k[f]=[])).push(b)});return k};b.oe=function(e,
+f){var k;k||(k=b.Ia);for(var m=0,n=e.length;m<n;){var q=m+n>>1;k(e[q])<k(f)?m=q+1:n=q}return m};b.ka=function(e){return e?e.ka?e.ka():b.isArray(e)?A.call(e):b.wb(e)?A.call(e):b.Ae(e):[]};b.size=function(e){return b.ka(e).length};b.ya=b.head=function(b,f,k){return null==f||k?b[0]:A.call(b,0,f)};b.Hf=function(b,f,k){return A.call(b,0,b.length-(null==f||k?1:f))};b.zb=function(b,f,k){return null==f||k?b[b.length-1]:A.call(b,Math.max(b.length-f,0))};b.Ag=b.Pg=function(b,f,k){return A.call(b,null==f||k?
+1:f)};b.compact=function(e){return b.filter(e,function(b){return!!b})};b.sb=function(e,f){return b.reduce(e,function(e,m){if(b.isArray(m))return e.concat(f?m:b.sb(m));e[e.length]=m;return e},[])};b.jh=function(e){return b.rd(e,A.call(arguments,1))};b.Mc=b.unique=function(e,f,k){k=k?b.map(e,k):e;var m=[];b.reduce(k,function(k,n,u){0!=u&&(!0===f?b.zb(k)==n:b.gc(k,n))||(k[k.length]=n,m[m.length]=e[u]);return k},[]);return m};b.$g=function(){return b.Mc(b.sb(arguments,!0))};b.Lf=b.Kf=function(e){var f=
+A.call(arguments,1);return b.filter(b.Mc(e),function(e){return b.every(f,function(f){return 0<=b.indexOf(f,e)})})};b.rd=function(e){var f=b.sb(A.call(arguments,1));return b.filter(e,function(e){return!b.gc(f,e)})};b.kh=function(){for(var e=A.call(arguments),f=b.max(b.Bb(e,"length")),k=Array(f),m=0;m<f;m++)k[m]=b.Bb(e,""+m);return k};b.indexOf=function(e,f,k){if(null==e)return-1;var m;if(k)return k=b.oe(e,f),e[k]===f?k:-1;if(X&&e.indexOf===X)return e.indexOf(f);k=0;for(m=e.length;k<m;k++)if(k in e&&
+e[k]===f)return k;return-1};b.lastIndexOf=function(b,f){if(null==b)return-1;if(pa&&b.lastIndexOf===pa)return b.lastIndexOf(f);for(var k=b.length;k--;)if(k in b&&b[k]===f)return k;return-1};b.vg=function(b,f,k){1>=arguments.length&&(f=b||0,b=0);k=arguments[2]||1;for(var m=Math.max(Math.ceil((f-b)/k),0),n=0,q=Array(m);n<m;)q[n++]=b,b+=k;return q};b.bind=function(e,f){var k,m;if(e.bind===T&&T)return T.apply(e,A.call(arguments,1));if(!b.b(e))throw new TypeError;m=A.call(arguments,2);return k=function(){if(!(this instanceof
+k))return e.apply(f,m.concat(A.call(arguments)));G.prototype=e.prototype;var b=new G,n=e.apply(b,m.concat(A.call(arguments)));return Object(n)===n?n:b}};b.Qe=function(e){var f=A.call(arguments,1);0==f.length&&(f=b.ac(e));y(f,function(f){e[f]=b.bind(e[f],e)});return e};b.ag=function(e,f){var k={};f||(f=b.Ia);return function(){var m=f.apply(this,arguments);return b.s(k,m)?k[m]:k[m]=e.apply(this,arguments)}};b.Wb=function(b,f){var k=A.call(arguments,2);return setTimeout(function(){return b.apply(b,k)},
+f)};b.defer=function(e){return b.Wb.apply(b,[e,1].concat(A.call(arguments,1)))};b.Ug=function(e,f){var k,m,n,q,u,x=b.pd(function(){u=q=!1},f);return function(){k=this;m=arguments;n||(n=setTimeout(function(){n=null;u&&e.apply(k,m);x()},f));q?u=!0:e.apply(k,m);x();q=!0}};b.pd=function(b,f){var k;return function(){var m=this,n=arguments;clearTimeout(k);k=setTimeout(function(){k=null;b.apply(m,n)},f)}};b.Ud=function(b){var f=!1,k;return function(){if(f)return k;f=!0;return k=b.apply(this,arguments)}};
+b.Ce=function(b,f){return function(){var k=[b].concat(A.call(arguments,0));return f.apply(this,k)}};b.bf=function(){var b=arguments;return function(){for(var f=arguments,k=b.length-1;0<=k;k--)f=[b[k].apply(this,f)];return f[0]}};b.Xc=function(b,f){return 0>=b?f():function(){if(1>--b)return f.apply(this,arguments)}};b.keys=ua||function(e){if(e!==Object(e))throw new TypeError("Invalid object");var f=[],k;for(k in e)b.s(e,k)&&(f[f.length]=k);return f};b.Ae=function(e){return b.map(e,b.Ia)};b.ac=b.bg=
+function(e){var f=[],k;for(k in e)b.b(e[k])&&f.push(k);return f.sort()};b.extend=function(b){y(A.call(arguments,1),function(f){for(var k in f)b[k]=f[k]});return b};b.df=function(b){y(A.call(arguments,1),function(f){for(var k in f)null==b[k]&&(b[k]=f[k])});return b};b.V=function(e){return b.Fd(e)?b.isArray(e)?e.slice():b.extend({},e):e};b.Qg=function(b,f){f(b);return b};b.isEqual=function(b,f){return P(b,f,[])};b.jc=function(e){if(b.isArray(e)||b.Gd(e))return 0===e.length;for(var f in e)if(b.s(e,f))return!1;
+return!0};b.Pf=function(b){return!(!b||1!=b.nodeType)};b.isArray=E||function(b){return"[object Array]"==F.call(b)};b.Fd=function(b){return b===Object(b)};b.wb=function(b){return"[object Arguments]"==F.call(b)};b.wb(arguments)||(b.wb=function(e){return!(!e||!b.s(e,"callee"))});b.b=function(b){return"[object Function]"==F.call(b)};b.Gd=function(b){return"[object String]"==F.call(b)};b.Sf=function(b){return"[object Number]"==F.call(b)};b.Qf=function(b){return b!==b};b.Nf=function(b){return!0===b||!1===
+b||"[object Boolean]"==F.call(b)};b.Of=function(b){return"[object Date]"==F.call(b)};b.Tf=function(b){return"[object RegExp]"==F.call(b)};b.Rf=function(b){return null===b};b.Uf=function(b){return void 0===b};b.s=function(b,f){return Da.call(b,f)};b.rc=function(){ba.ab=ja;return this};b.Ia=function(b){return b};b.Vg=function(b,f,k){for(var m=0;m<b;m++)f.call(k,m)};b.escape=function(b){return(""+b).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#x27;").replace(/\//g,
+"&#x2F;")};b.Ld=function(e){y(b.ac(e),function(f){u(f,b[f]=e[f])})};var Z=0;b.ah=function(b){var f=Z++;return b?b+f:f};b.re={evaluate:/<%([\s\S]+?)%>/g,Dd:/<%=([\s\S]+?)%>/g,escape:/<%-([\s\S]+?)%>/g};var ea=/.^/;b.Rg=function(e,f){var k=b.re,k="var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('"+e.replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(k.escape||ea,function(b,e){return"',_.escape("+C(e)+"),'"}).replace(k.Dd||ea,function(b,e){return"',"+C(e)+",'"}).replace(k.evaluate||
+ea,function(b,e){return"');"+C(e).replace(/[\r\n\t]/g," ")+";__p.push('"}).replace(/\r/g,"\\r").replace(/\n/g,"\\n").replace(/\t/g,"\\t")+"');}return __p.join('');",m=new Function("obj","_",k);return f?m(f,b):function(e){return m.call(this,e,b)}};b.ib=function(e){return b(e).ib()};b.prototype=x.prototype;b.Ld(b);y("pop push reverse shift sort splice unshift".split(" "),function(b){var f=z[b];x.prototype[b]=function(){var k=this.$;f.apply(k,arguments);var m=k.length;"shift"!=b&&"splice"!=b||0!==m||
+delete k[0];return n(k,this.ma)}});y(["concat","join","slice"],function(b){var f=z[b];x.prototype[b]=function(){return n(f.apply(this.$,arguments),this.ma)}});x.prototype.ib=function(){this.ma=!0;return this};x.prototype.value=function(){return this.$}}).call(this);$u=_.rc();jQuery.Pc=function(u){return decodeURIComponent(u).replace(/\+/g," ")};jQuery.eh=encodeURIComponent;jQuery.xf=function(u){"undefined"==typeof u&&(u=document.location.search);u=u.substr(u.indexOf("?")+1).split("&");for(var n={},x=0;x<u.length;x++){var C=u[x].split("=",2),G=jQuery.Pc(C[0]),C=jQuery.Pc(C[1]);G in n?n[G].push(C):n[G]=[C]}return n};
+jQuery.c.Df=function(u,n){function x(C){if(3==C.nodeType){var G=C.nodeValue,b=G.toLowerCase().indexOf(u);if(0<=b&&!jQuery(C.parentNode).cc(n)){var P=document.createElement("span");P.className=n;P.appendChild(document.createTextNode(G.substr(b,u.length)));C.parentNode.insertBefore(P,C.parentNode.insertBefore(document.createTextNode(G.substr(b+u.length)),C.nextSibling));C.nodeValue=G.substr(0,b)}}else jQuery(C).ic("button, select, textarea")||jQuery.a(C.childNodes,function(){x(this)})}return this.a(function(){x(this)})};
+function Ec(){this.rf();this.Cf();this.Gf()}var Fc={};_=function(u){var n=Fc[u];return"undefined"==typeof n?u:"string"==typeof n?n:n[0]};$(document).p(function(){Ec()});
+
+    </script>
+
+    <link rel="top" title="Newton Inventory Service 0.9.0 documentation" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="#">Newton Inventory Service 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Newton Inventory Service API</a><ul>
+<li><a class="reference internal" href="#quick-reference">Quick Reference</a><ul>
+<li><a class="reference internal" href="#products">Products</a></li>
+<li><a class="reference internal" href="#devices">Devices</a></li>
+<li><a class="reference internal" href="#inventory">Inventory</a></li>
+<li><a class="reference internal" href="#deploy">Deploy</a></li>
+<li><a class="reference internal" href="#admin">Admin</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1">Products</a></li>
+<li><a class="reference internal" href="#id7">Devices</a></li>
+<li><a class="reference internal" href="#id12">Inventory</a></li>
+<li><a class="reference internal" href="#id14">Deploy</a></li>
+<li><a class="reference internal" href="#id16">Admin</a></li>
+</ul>
+</li>
+</ul>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+<div class="section" id="newton-inventory-service-api">
+<h1>Newton Inventory Service API<a class="headerlink" href="#newton-inventory-service-api" title="Permalink to this headline">&para;</a></h1>
+<div class="section" id="quick-reference">
+<h2>Quick Reference<a class="headerlink" href="#quick-reference" title="Permalink to this headline">&para;</a></h2>
+<p>Production url - <a class="reference external" href="http://inventory.encore.rackspace.com/1.0">http://inventory.encore.rackspace.com/1.0</a></p>
+<p>For staging or testing environments, prepend &#8216;staging.&#8217; or &#8216;qe.&#8217; to url, respectively.</p>
+<div class="section" id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">&para;</a></h3>
+<p><a class="reference internal" href="#id1">How to authenticate with Newton Inventory Service</a></p>
+</div>
+<div class="section" id="products">
+<h3>Products<a class="headerlink" href="#products" title="Permalink to this headline">&para;</a></h3>
+<p>Registry of available families of which a Device is a member.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="15%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">URL</th>
+<th class="head">HTTP Verb</th>
+<th class="head">Functionality</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>/products</td>
+<td>GET</td>
+<td><a class="reference internal" href="#id4">List all registered Product</a></td>
+</tr>
+<tr class="row-odd"><td>/products</td>
+<td>POST</td>
+<td><a class="reference internal" href="#id5">Register a Product</a></td>
+</tr>
+<tr class="row-even"><td>/products/&lt;product_id&gt;</td>
+<td>GET</td>
+<td><a class="reference internal" href="#id6">Retrieve a Product&#8217;s details</a></td>
+</tr>
+<tr class="row-odd"><td>/products/&lt;product_id&gt;</td>
+<td>PUT</td>
+<td><a class="reference internal" href="#id7">Update a Product</a></td>
+</tr>
+<tr class="row-even"><td>/products/&lt;product_id&gt;</td>
+<td>DELETE</td>
+<td><a class="reference internal" href="#id8">Unregister a Product</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="devices">
+<h3>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">&para;</a></h3>
+<p>Dedicated hardware instances which are tracked in Inventory.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="14%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">URL</th>
+<th class="head">HTTP Verb</th>
+<th class="head">Functionality</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>/devices</td>
+<td>GET</td>
+<td><a class="reference internal" href="#id10">List all Devices in Inventory</a></td>
+</tr>
+<tr class="row-odd"><td>/devices</td>
+<td>POST</td>
+<td><a class="reference internal" href="#id11">Add a Device to Inventory</a></td>
+</tr>
+<tr class="row-even"><td>/devices/&lt;device_id&gt;</td>
+<td>GET</td>
+<td><a class="reference internal" href="#id12">Retrieve a Device&#8217;s details from Inventory</a></td>
+</tr>
+<tr class="row-odd"><td>/devices/&lt;device_id&gt;</td>
+<td>DELETE</td>
+<td><a class="reference internal" href="#id13">Remove a Device from Inventory</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="inventory">
+<h3>Inventory<a class="headerlink" href="#inventory" title="Permalink to this headline">&para;</a></h3>
+<p>The collection of all Devices currently tracked in Inventory.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="17%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">URL</th>
+<th class="head">HTTP Verb</th>
+<th class="head">Functionality</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>/inventory</td>
+<td>GET</td>
+<td><a class="reference internal" href="#id15">Retrieve summarized Inventory counts</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="deploy">
+<h3>Deploy<a class="headerlink" href="#deploy" title="Permalink to this headline">&para;</a></h3>
+<p>Allocate devices for customers and manage those devices in Inventory.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="16%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">URL</th>
+<th class="head">HTTP Verb</th>
+<th class="head">Functionality</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>/deploy</td>
+<td>POST</td>
+<td><a class="reference internal" href="#id17">Request Devices and flag them as allocated</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="admin">
+<h3>Admin<a class="headerlink" href="#admin" title="Permalink to this headline">&para;</a></h3>
+<p>Allocate devices for customers and manage those devices in Inventory.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="16%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">URL</th>
+<th class="head">HTTP Verb</th>
+<th class="head">Functionality</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>/admin</td>
+<td>GET</td>
+<td><a class="reference internal" href="#id19">View current configuration settings.</a></td>
+</tr>
+<tr class="row-odd"><td>/admin</td>
+<td>PUT</td>
+<td><a class="reference internal" href="#id20">Update current configuration settings.</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id1">
+<span id="id2"></span><h2>Authentication<a class="headerlink" href="#id1" title="Permalink to this headline">&para;</a></h2>
+<blockquote>
+<div><p>Newton Inventory Service makes use of Rackspace&#8217;s internal Identity service
+for authentication and autthorization. Clients must use a Rackspace account
+that is a member of the nis_viewer or nis_admin LDAP groups for read only or
+read/write access, respectively.</p>
+<p>Using an authorized account, retrieve a token from Identity by sending a POST
+request to the following url:</p>
+<p>Production
+<a class="reference external" href="https://identity-internal.api.rackspacecloud.com/v2.0/tokens">https://identity-internal.api.rackspacecloud.com/v2.0/tokens</a></p>
+<p>Staging
+<a class="reference external" href="https://staging.identity-internal.api.rackspacecloud.com/v2.0/tokens">https://staging.identity-internal.api.rackspacecloud.com/v2.0/tokens</a></p>
+<p>with a payload containing the authorized user credentials:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;auth&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;RAX-AUTH:domain&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Rackspace&quot;</span> <span class="p">},</span>
+      <span class="s">&quot;passwordCredentials&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s">&quot;username&quot;</span><span class="p">:</span> <span class="s">&quot;&lt;nis_user_account&gt;&quot;</span><span class="p">,</span>
+         <span class="s">&quot;password&quot;</span><span class="p">:</span> <span class="s">&quot;&lt;password&gt;&quot;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The response should resemble the block below:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;access&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s">&quot;token&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;aaaaa-bbbbb-ccccc-dddd&quot;</span><span class="p">,</span>
+         <span class="s">&quot;expires&quot;</span><span class="p">:</span> <span class="s">&quot;2012-04-13T08:15:00.000-05:00&quot;</span>
+      <span class="p">},</span>
+      <span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s">&quot;roles&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span> <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Racker&quot;</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Support&quot;</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;nis_admin&quot;</span> <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;jqsmith&quot;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Once an auth token is obtained, include the value from access.token.id as a
+header named &#8216;X-Auth-Token&#8217; in every call made to the NIS service.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>Products<a class="headerlink" href="#id3" title="Permalink to this headline">&para;</a></h2>
+<span class="target" id="id4"></span><dl class="get">
+<dt id="get--products">
+<tt class="descname">GET </tt><tt class="descname">/products</tt><a class="headerlink" href="#get--products" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Returns a list of all registered Products as an array.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/products</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;98765&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;5505 FW&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Firewall&quot;</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>product_name</strong> &#8211; display name of the Product</li>
+<li><strong>product_id</strong> &#8211; string id of the Product</li>
+<li><strong>device_type</strong> &#8211; Product&#8217;s Device type (i.e. &#8216;server&#8217; or &#8216;firewall&#8217;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; OK</li>
+<li><strong>400</strong> &#8211; bad request</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="id5"></span><dl class="post">
+<dt id="post--products">
+<tt class="descname">POST </tt><tt class="descname">/products</tt><a class="headerlink" href="#post--products" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Register a Product, returning the new Product if successful.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/products</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Product created</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Content-Type</strong> &#8211; header must be set to <em class="mailheader">application/json</em></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Json Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>product_name</strong> (<em>str</em>) &#8211; display name of the Product; <strong>must be distict across all Products</strong></li>
+<li><strong>product_id</strong> (<em>str</em>) &#8211; string id of the Product; <strong>must be distict across all Products</strong></li>
+<li><strong>device_type</strong> (<em>str</em>) &#8211; Product&#8217;s Device type (i.e. &#8216;Server&#8217; or &#8216;Firewall&#8217;);</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>201</strong> &#8211; Product created</li>
+<li><strong>400</strong> &#8211; bad request</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="id6"></span><dl class="get">
+<dt id="get--products-(str-product_id)">
+<tt class="descname">GET </tt><tt class="descname">/products/</tt><big>(</big><em class="property">str: </em><em>product_id</em><big>)</big><a class="headerlink" href="#get--products-(str-product_id)" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Retrieve the details of the Product having specified (str:product_id).</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/products/123456</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>product_id</strong> (<em>str</em>) &#8211; Product&#8217;s unique product_id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; OK</li>
+<li><strong>400</strong> &#8211; bad request</li>
+<li><strong>404</strong> &#8211; Product not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="id7"></span><dl class="put">
+<dt id="put--products-(str-product_id)">
+<tt class="descname">PUT </tt><tt class="descname">/products/</tt><big>(</big><em class="property">str: </em><em>product_id</em><big>)</big><a class="headerlink" href="#put--products-(str-product_id)" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Update the details of the Product having specified (str:product_id),
+returning the new Product if successful. May supply complete or partial
+Product object which will be merged on top of exisiting Product.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">PUT</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/products/123456</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span> <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Toaster&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Product updated</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Toaster&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Content-Type</strong> &#8211; header must be set to <em class="mailheader">application/json</em></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Json Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>product_name</strong> (<em>str</em>) &#8211; display name of the Product; <strong>must be distict across all products</strong></li>
+<li><strong>product_id</strong> (<em>str</em>) &#8211; string id of the Product; <strong>must be distict across all products</strong></li>
+<li><strong>type</strong> (<em>str</em>) &#8211; Product&#8217;s Device type (i.e. &#8216;Server&#8217; or &#8216;Firewall&#8217;);</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>201</strong> &#8211; Product updated</li>
+<li><strong>400</strong> &#8211; bad request</li>
+<li><strong>404</strong> &#8211; Product not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="id8"></span><dl class="delete">
+<dt id="delete--products-(str-product_id)">
+<tt class="descname">DELETE </tt><tt class="descname">/products/</tt><big>(</big><em class="property">str: </em><em>product_id</em><big>)</big><a class="headerlink" href="#delete--products-(str-product_id)" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Ungregister the Product having specified (str:product_id) if no Devices
+belonging to this Product family currently exist.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">DELETE</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/products/123456</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">Product deleted</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>product_id</strong> (<em>str</em>) &#8211; product&#8217;s unique id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>204</strong> &#8211; Product deleted</li>
+<li><strong>400</strong> &#8211; bad request</li>
+<li><strong>403</strong> &#8211; Devices using this Product still exist</li>
+<li><strong>404</strong> &#8211; Product not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id9">
+<h2>Devices<a class="headerlink" href="#id9" title="Permalink to this headline">&para;</a></h2>
+<span class="target" id="id10"></span><dl class="get">
+<dt id="get--devices">
+<tt class="descname">GET </tt><tt class="descname">/devices</tt><a class="headerlink" href="#get--devices" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Returns a list of all Devices as an array.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/devices</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;device_id&quot;</span><span class="p">:</span> <span class="mi">37642</span><span class="p">,</span>
+         <span class="nt">&quot;core_template_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Firewall&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;5055&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;77777&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;dc&quot;</span><span class="p">:</span> <span class="s2">&quot;ORD1&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;aggr_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Aggr3.ORD1&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;time_created&quot;</span><span class="p">:</span> <span class="s2">&quot;Fri Nov  8 17:05:16 2013&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;time_allocated&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+         <span class="nt">&quot;is_allocated&quot;</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;device_id&quot;</span><span class="p">:</span> <span class="mi">61120</span><span class="p">,</span>
+         <span class="nt">&quot;core_template_id&quot;</span><span class="p">:</span> <span class="s2">&quot;654321&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;dc&quot;</span><span class="p">:</span> <span class="s2">&quot;ORD1&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;aggr_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Aggr2.ORD1&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;time_created&quot;</span><span class="p">:</span> <span class="s2">&quot;Fri Nov  8 17:05:17 2013&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;time_allocated&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+         <span class="nt">&quot;is_allocated&quot;</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>device_id</strong> &#8211; id of the Device as it is stored in CORE</li>
+<li><strong>core_template_id</strong> &#8211; id of the existing Device in CORE from which this device will be cloned</li>
+<li><strong>device_type</strong> &#8211; type of Device (i.e. &#8216;server&#8217; or &#8216;firewall&#8217;)</li>
+<li><strong>dc</strong> &#8211; datacenter id where Device is located</li>
+<li><strong>product_name</strong> &#8211; display name of the Product family to which Device belongs</li>
+<li><strong>product_id</strong> &#8211; string id of the Product family to which Device belongs</li>
+<li><strong>aggr_zone</strong> &#8211; rack specific location of device</li>
+<li><strong>is_allocated</strong> &#8211; boolean flag indicating that Device is allocated and will not be returned via Inventory resource</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; OK</li>
+<li><strong>400</strong> &#8211; bad request</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="id11"></span><dl class="post">
+<dt id="post--devices">
+<tt class="descname">POST </tt><tt class="descname">/devices</tt><a class="headerlink" href="#post--devices" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Create a Device and add it to Inventory, returning the new Device if
+successful.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/devices</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;device_id&quot;</span><span class="p">:</span> <span class="mi">61120</span><span class="p">,</span>
+   <span class="nt">&quot;core_template_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;dc&quot;</span><span class="p">:</span> <span class="s2">&quot;ORD1&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;aggr_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Aggr2.ORD1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">device created</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;device_id&quot;</span><span class="p">:</span> <span class="mi">61120</span><span class="p">,</span>
+      <span class="nt">&quot;core_template_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;dc&quot;</span><span class="p">:</span> <span class="s2">&quot;ORD1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;aggr_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Aggr2.ORD1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;time_created&quot;</span><span class="p">:</span> <span class="s2">&quot;Fri Nov  8 17:05:17 2013&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;time_allocated&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;is_allocated&quot;</span><span class="p">:</span> <span class="kc">false</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Content-Type</strong> &#8211; header must be set to <em class="mailheader">application/json</em></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Json Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>device_id</strong> (<em>str</em>) &#8211; id of the device as it is stored in CORE</li>
+<li><strong>core_template_id</strong> (<em>str</em>) &#8211; id of the existing Device in CORE from which this device will be cloned</li>
+<li><strong>product_id</strong> (<em>str</em>) &#8211; string id of the Product family to which device belongs</li>
+<li><strong>dc</strong> (<em>str</em>) &#8211; datacenter id where device is located; 3 alpha plus 1 digit</li>
+<li><strong>aggr_zone</strong> (<em>str</em>) &#8211; rack specific location of device</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>201</strong> &#8211; device created</li>
+<li><strong>400</strong> &#8211; bad request</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="id12"></span><dl class="get">
+<dt id="get--devices-(str-device_id)">
+<tt class="descname">GET </tt><tt class="descname">/devices/</tt><big>(</big><em class="property">str: </em><em>device_id</em><big>)</big><a class="headerlink" href="#get--devices-(str-device_id)" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Retrieve the details of a Device specified as (str:device_id).</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/devices/61120</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;device_id&quot;</span><span class="p">:</span> <span class="mi">61120</span><span class="p">,</span>
+      <span class="nt">&quot;core_template_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;dc&quot;</span><span class="p">:</span> <span class="s2">&quot;ORD1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;aggr_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Aggr2.ORD1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;time_created&quot;</span><span class="p">:</span> <span class="s2">&quot;Fri Nov  8 17:05:17 2013&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;time_allocated&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;is_allocated&quot;</span><span class="p">:</span> <span class="kc">false</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>device_id</strong> (<em>int</em>) &#8211; devices&#8217;s unique id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; OK</li>
+<li><strong>400</strong> &#8211; bad request</li>
+<li><strong>404</strong> &#8211; device not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="id13"></span><dl class="delete">
+<dt id="delete--devices-(str-device_id)">
+<tt class="descname">DELETE </tt><tt class="descname">/devices/</tt><big>(</big><em class="property">str: </em><em>device_id</em><big>)</big><a class="headerlink" href="#delete--devices-(str-device_id)" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Remove the Device specified as (str:device_id) from Inventory.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">DELETE</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/devices/61120</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">device deleted</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>device_id</strong> (<em>int</em>) &#8211; devices&#8217;s unique id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>204</strong> &#8211; device deleted</li>
+<li><strong>400</strong> &#8211; bad request</li>
+<li><strong>404</strong> &#8211; device not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id14">
+<h2>Inventory<a class="headerlink" href="#id14" title="Permalink to this headline">&para;</a></h2>
+<span class="target" id="id15"></span><dl class="get">
+<dt id="get--inventory">
+<tt class="descname">GET </tt><tt class="descname">/inventory</tt><a class="headerlink" href="#get--inventory" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Retrieve a summarized count of all unallocated devices in Inventory. Accepts
+query string parameters to filter results.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/inventory</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;dc&quot;</span><span class="p">:</span> <span class="s2">&quot;ORD1&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;summary&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+               <span class="nt">&quot;aggr_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Aggr3.ORD1&quot;</span><span class="p">,</span>
+               <span class="nt">&quot;devices&quot;</span><span class="p">:</span> <span class="p">[</span>
+                  <span class="p">{</span>
+                     <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;98765&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;5505 FW&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Firewall&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">7</span>
+                  <span class="p">},</span>
+                  <span class="p">{</span>
+                     <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">2</span>
+                  <span class="p">},</span>
+                  <span class="p">{</span>
+                     <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123099&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Product 4&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">8</span>
+                  <span class="p">}</span>
+               <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+               <span class="nt">&quot;devices&quot;</span><span class="p">:</span> <span class="p">[</span>
+                  <span class="p">{</span>
+                     <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;98765&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;5505 FW&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Firewall&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">3</span>
+                  <span class="p">},</span>
+                  <span class="p">{</span>
+                     <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123456&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Perfomance One&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">5</span>
+                  <span class="p">},</span>
+                  <span class="p">{</span>
+                     <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;123901&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Product 2&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Server&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">6</span>
+                  <span class="p">}</span>
+               <span class="p">],</span>
+               <span class="nt">&quot;aggr_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Aggr2.ORD1&quot;</span>
+            <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">31</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>device_id</strong> &#8211; id of the Device as it is stored in CORE</li>
+<li><strong>device_type</strong> &#8211; type of Device (i.e. &#8216;server&#8217; or &#8216;firewall&#8217;)</li>
+<li><strong>dc</strong> &#8211; datacenter id where Device is located</li>
+<li><strong>product_name</strong> &#8211; display name of the Product family to which Device belongs</li>
+<li><strong>product_id</strong> &#8211; string id of the Product family to which Device belongs</li>
+<li><strong>aggr_zone</strong> &#8211; rack specific location of device</li>
+<li><strong>is_allocated</strong> &#8211; boolean flag indicating that Device is allocated and will not be returned via Inventory resource</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id16">
+<h2>Deploy<a class="headerlink" href="#id16" title="Permalink to this headline">&para;</a></h2>
+<span class="target" id="id17"></span><dl class="post">
+<dt id="post--deploy">
+<tt class="descname">POST </tt><tt class="descname">/deploy</tt><a class="headerlink" href="#post--deploy" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Request (int:quantity) number of Devices with Product type = (str:product_id)
+from datacenter = (str:dc) and optionally from aggr zone = (str:aggr_zone).
+If found, flag these devices as allocated and return an array of the device
+IDs. All devices returned will be allocated from the same aggr zone.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/deploy</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;dc&quot;</span> <span class="p">:</span> <span class="s2">&quot;ORD1&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;aggr_zone&quot;</span><span class="p">:</span> <span class="s2">&quot;Aggr2.ORD1&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;devices&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="mi">12345</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;quantity&quot;</span><span class="p">:</span> <span class="mi">2</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;product_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="mi">777777</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;quantity&quot;</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;device_id&quot;</span><span class="p">:</span> <span class="mi">111111</span><span class="p">,</span>
+         <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;server&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;core_template_id&quot;</span><span class="p">:</span> <span class="mi">102938</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;device_id&quot;</span><span class="p">:</span> <span class="mi">22222</span><span class="p">,</span>
+         <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;server&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;core_template_id&quot;</span><span class="p">:</span> <span class="mi">102938</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;device_id&quot;</span><span class="p">:</span> <span class="mi">77777</span><span class="p">,</span>
+         <span class="nt">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;firewall&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;core_template_id&quot;</span><span class="p">:</span> <span class="mi">987654</span>
+      <span class="p">},</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; no error</li>
+<li><strong>404</strong> &#8211; insufficient inventory</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id18">
+<h2>Admin<a class="headerlink" href="#id18" title="Permalink to this headline">&para;</a></h2>
+<p><strong>This section is still in progress</strong></p>
+<span class="target" id="id19"></span><dl class="get">
+<dt id="get--admin">
+<tt class="descname">GET </tt><tt class="descname">/admin</tt><a class="headerlink" href="#get--admin" title="Permalink to this definition">&para;</a></dt>
+<dd><p>View current configuration settings.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/admin</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;aggr_round_robin&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="id20"></span><dl class="put">
+<dt id="put--admin">
+<tt class="descname">PUT </tt><tt class="descname">/admin</tt><a class="headerlink" href="#put--admin" title="Permalink to this definition">&para;</a></dt>
+<dd><p>Dynamically update service configuration. Include in body payload and option
+and its new value. Current options include:</p>
+<dl class="docutils">
+<dt>aggr_round_robin:</dt>
+<dd><p class="first">Set device deployment distribution configuration.</p>
+<p>true - device deployment will be balanced, always pulling from aggr with
+highest availablility that satisfies request.</p>
+<p class="last">false - device deployment will be consolidated, always pulling from aggr
+with lowest availablility that satisfies request.</p>
+</dd>
+</dl>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">PUT</span> <span class="nn">http://inventory.encore.rackspace.com/1.0/admin</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Auth-Token</span><span class="o">:</span> <span class="l">aaaaa-bbbbb-ccccc-dddd</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;aggr_round_robin&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+   <span class="nt">&quot;aggr_round_robin&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>none</strong> &#8211; This call takes no parameters</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Json Parameters:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>aggr_round_robin</strong> (<em>str</em>) &#8211; device deployment distribution</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><strong>200</strong> &#8211; no error</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Rackspace.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.Theme by <a href="http://github.com/vkvn">vkvn</a>
+    </div>
+  </body>
+</html>
